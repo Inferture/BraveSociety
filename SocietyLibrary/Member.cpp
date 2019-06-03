@@ -11,16 +11,19 @@
 
 
 Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
-	sf::Sprite hair, sf::Sprite body, int attack, int defense) :
+	sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack, int defense) :
 	GameObject(x, y, z), name(name), aggressiveness(aggressiveness), tolerance(tolerance),
 	greenAffiliation(greenAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
-	body(body), attack(attack), defense(defense), disappearSpeed(100)
+	body(body), clothes(clothes), stick(stick), attack(attack), defense(defense), disappearSpeed(100)
 {
 
 	//this->body.setOrigin(this->body.getLocalBounds().width/2, this->body.getLocalBounds().height / 2);
 	this->body.setPosition(x, y);
 	//this->hair.setOrigin(this->hair.getLocalBounds().width / 2, this->hair.getLocalBounds().height / 2);
 	this->hair.setPosition(x, y);
+
+	this->clothes.setPosition(x, y);
+	this->stick.setPosition(x, y);
 }
 
 void Member::Die(Member* killer)
@@ -57,8 +60,6 @@ void Member::Die(Member* killer)
 
 void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) const
 {
-	//hair.setPosition(sf::Vector2f(x, y));
-	//body.setPosition(sf::Vector2f(x, y));
 	sf::Font font;
 	font.loadFromFile("Fonts/Augusta.ttf");
 	sf::Text nameTag(name, font);
@@ -66,14 +67,10 @@ void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) con
 	nameTag.setOrigin(nameTag.getLocalBounds().width / 2, nameTag.getLocalBounds().height / 2);
 	nameTag.setPosition(x + body.getLocalBounds().width/2, y+body.getLocalBounds().height);
 
-	sf::Sprite sprBody(body);
-	sprBody.setPosition(x, y);
-
-	sf::Sprite sprHair(hair);
-	sprHair.setPosition(x, y);
-
 	window.draw(nameTag);
 	window.draw(body);
+	window.draw(stick);
+	window.draw(clothes);
 	window.draw(hair);
 }
 
@@ -347,6 +344,8 @@ void Member::Translate(float x, float y)
 	this->y -= y;
 	hair.setPosition(this->x, this->y);
 	body.setPosition(this->x, this->y);
+	stick.setPosition(this->x, this->y);
+	clothes.setPosition(this->x, this->y);
 }
 
 

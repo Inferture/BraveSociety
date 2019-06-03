@@ -70,13 +70,17 @@ protected:
 	sf::Sprite hair;
 	//Sprite of body, with a given color
 	sf::Sprite body;
+	//Sprite of stick, with a given color and which comes in front of the body and behind the hair
+	sf::Sprite stick;
+	//Sprite of clothes, with the "team" color
+	sf::Sprite clothes;
 	//Relationships with other members
 	std::map<Member*, Relationship> relationships;
 public:
 
 	
 	Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
-		sf::Sprite hair, sf::Sprite body, int attack=0, int defense=0);
+		sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack=0, int defense=0);
 
 	//Dies and sends the message of their death to their loved ones
 	void Die(Member* killer=NULL);

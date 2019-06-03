@@ -38,26 +38,53 @@ int myMain()
 	sf::Sprite spriteHair;
 	sf::Texture textureHair;
 	textureHair.setSmooth(true);
-	if (!textureHair.loadFromFile("Sprites/hair0.png"))
+	if (!textureHair.loadFromFile("Sprites/hair.png"))
 	{
 		cout << "Hair not found";
 	}
 	spriteHair.setTexture(textureHair);
+
 	sf::Sprite spriteBody;
 	sf::Texture textureBody;
 	textureBody.setSmooth(true);
-	if (!textureBody.loadFromFile("Sprites/body0.png"))
+	if (!textureBody.loadFromFile("Sprites/body.png"))
 	{
 		cout << "Body not found";
 	}
 	spriteBody.setTexture(textureBody);
 
-	spriteHair.setColor(sf::Color::Blue);
-	spriteBody.setColor(sf::Color::Magenta);
-	Member member(500,0,0,"Mark",0,0,0,0,spriteHair,spriteBody);
+	spriteHair.setColor(sf::Color(70,10,10));
+	spriteBody.setColor(sf::Color(196, 144, 124));
+
+	
+	sf::Sprite spriteClothes;
+	sf::Texture textureClothes;
+	textureClothes.setSmooth(true);
+	if (!textureClothes.loadFromFile("Sprites/clothes.png"))
+	{
+		cout << "Clothes not found";
+	}
+	spriteClothes.setTexture(textureClothes);
+
+	sf::Sprite spriteStick;
+	sf::Texture textureStick;
+	textureStick.setSmooth(true);
+	if (!textureStick.loadFromFile("Sprites/stick.png"))
+	{
+		cout << "Stick not found";
+	}
+	spriteStick.setTexture(textureStick);
+
+	spriteStick.setColor(sf::Color::White);
+	spriteClothes.setColor(sf::Color::Red);
+
+	Member member(500,0,0,"Mark",0,0,0,0,spriteHair,spriteBody, spriteStick, spriteClothes);
 	sf::Sprite spriteHair2(spriteHair);
 	sf::Sprite spriteBody2(spriteBody);
-	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2);
+	sf::Sprite spriteStick2(spriteStick);
+	sf::Sprite spriteClothes2(spriteClothes);
+	spriteClothes2.setColor(sf::Color::Blue);
+	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2, spriteStick2, spriteClothes2);
 	GM.AddMember(&member);
 	GM.AddMember(&member2);
 	GM.UpdateAll();
