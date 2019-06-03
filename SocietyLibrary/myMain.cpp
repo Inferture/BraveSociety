@@ -54,10 +54,10 @@ int myMain()
 
 	spriteHair.setColor(sf::Color::Blue);
 	spriteBody.setColor(sf::Color::Magenta);
-	Member member(0,0,0,"Mark",0,0,0,0,spriteHair,spriteBody);
+	Member member(500,0,0,"Mark",0,0,0,0,spriteHair,spriteBody);
 	sf::Sprite spriteHair2(spriteHair);
 	sf::Sprite spriteBody2(spriteBody);
-	Member member2(500, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2);
+	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2);
 	GM.AddMember(&member);
 	GM.AddMember(&member2);
 	GM.UpdateAll();
@@ -70,7 +70,15 @@ int myMain()
 			{
 				window.close();
 			}
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+			{
+				float mouse_x = sf::Mouse::getPosition().x;
+				float mouse_y = sf::Mouse::getPosition().y;
+				GM.HandleObjectAt(mouse_x, mouse_y);
+			}
 		}
+
 		//Update
 		GM.UpdateAll();
 

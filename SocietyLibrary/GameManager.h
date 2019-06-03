@@ -32,5 +32,6 @@ public:
 	void AddMember(Member* member);
 	//Called every frame;
 	void UpdateAll();
-
+	//Opens the window for the object clicked
+	void HandleObjectAt(float mouse_x, float mouse_y);
 };

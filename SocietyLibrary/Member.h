@@ -107,6 +107,10 @@ public:
 	void AddRelation(Member* target, float relation, bool relative = true);
 	//Translates from (x,y)
 	virtual void Translate(float x, float y);
+	//Display the info window
+	virtual void Handle();
+	//
+	
 }; 
 bool IsFamily(RelationStatus status);
 bool IsFriendly(RelationStatus status);

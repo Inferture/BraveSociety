@@ -6,6 +6,9 @@
 #include "GameManager.h"
 #include <iostream>
 #include <string>
+#include <imgui.h>
+#include <sfml-imgui/imgui-SFML.hpp>
+
 
 Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
 	sf::Sprite hair, sf::Sprite body, int attack, int defense) :
@@ -13,9 +16,11 @@ Member::Member(float x, float y, float z, std::string name, float aggressiveness
 	greenAffiliation(greenAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
 	body(body), attack(attack), defense(defense), disappearSpeed(100)
 {
+
+	//this->body.setOrigin(this->body.getLocalBounds().width/2, this->body.getLocalBounds().height / 2);
 	this->body.setPosition(x, y);
+	//this->hair.setOrigin(this->hair.getLocalBounds().width / 2, this->hair.getLocalBounds().height / 2);
 	this->hair.setPosition(x, y);
-	
 }
 
 void Member::Die(Member* killer)
@@ -68,8 +73,8 @@ void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) con
 	sprHair.setPosition(x, y);
 
 	window.draw(nameTag);
-	window.draw(sprBody);
-	window.draw(sprHair);
+	window.draw(body);
+	window.draw(hair);
 }
 
 pugi::xml_document Member::Serialize() const
@@ -128,7 +133,12 @@ void Member::Scale(float scale)
 {
 
 }
+void Member::Handle()
+{
+	ImGui::Begin(name.c_str());
 
+	ImGui::End();
+}
 void Member::Update()
 {
 	
@@ -155,13 +165,19 @@ void Member::Update()
 			
 			float delta_x(targetX - x);
 			float delta_y(targetY - y);
-
+			/*std::cout << "\nX"<<x;
+			std::cout << "\nY"<<y;
+			std::cout << "\ntargetX"<<targetX;
+			std::cout << "\ntargetY"<<targetY;*/
+			std::cout << "\nbodyW\n" << body.getLocalBounds().width;
 			//target still far
-			if (delta_x*delta_x+delta_y*delta_y>body.getScale().x*body.getScale().x)
+			if (delta_x*delta_x+delta_y*delta_y>body.getLocalBounds().width*body.getLocalBounds().width)
 			{
-				float dx(deltaTime*speed*delta_x / (delta_x + delta_y));
-				float dy(deltaTime*speed*delta_y / (delta_x + delta_y));
-				Translate(dx, dy);
+				float dx(deltaTime*speed*delta_x / (std::abs(delta_x) + std::abs(delta_y)));
+				float dy(deltaTime*speed*delta_y / (std::abs(delta_x) + std::abs(delta_y)));
+				std::cout << "\ndeltatime:" << deltaTime << "\nspeed:" << speed << "\ndelta_y" << delta_y;
+				Translate(dx, -dy);
+				
 			}
 			//Interaction
 			else
@@ -329,8 +345,8 @@ void Member::Translate(float x, float y)
 {
 	this->x += x;
 	this->y -= y;
-	hair.setPosition(x, y);
-	body.setPosition(x, y);
+	hair.setPosition(this->x, this->y);
+	body.setPosition(this->x, this->y);
 }
 
 

@@ -24,6 +24,10 @@ GameObject::GameObject(float x, float y, float z) : x(x), y(y), z(z)
 {
 }
 
+void GameObject::Handle()
+{
+
+}
 
 void GameObject::SetPosition(float x, float y)
 {

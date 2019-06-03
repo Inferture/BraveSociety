@@ -49,6 +49,8 @@ public:
 	virtual void Scale(float scale)=0;
 	/*Called every frame*/
 	virtual void Update();
+	//Display the info window
+	virtual void Handle();
 };
 bool operator<(const GameObject &go1, const GameObject& go2);
 bool SortZ(GameObject* c1, GameObject *c2);

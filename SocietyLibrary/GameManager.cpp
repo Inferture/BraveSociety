@@ -18,6 +18,20 @@ void GameManager::UpdateAll()
 	timer.restart();
 }
 
+void GameManager::HandleObjectAt(float mouse_x, float mouse_y)
+{
+	for (unsigned int i = 0; i < members.size(); i++)
+	{
+		Member* member = members[i];
+		float delta_x(member->GetX()-mouse_x);
+		float delta_y(member->GetY() - mouse_y);
+		if (delta_x*delta_x + delta_y*delta_y < 0)
+		{
+
+		}
+	}
+}
+
 //Main clock
 sf::Clock GameManager::GetTimer() const
 {
