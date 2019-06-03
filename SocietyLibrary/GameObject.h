@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "myMain.h"
-
+#include <pugixml.hpp>
 
 using std::unique_ptr;
 class GameObject
@@ -48,6 +47,8 @@ public:
 
 	virtual bool IsTouched(float x_touch, float y_touch) const = 0;
 	virtual void Scale(float scale)=0;
+	/*Called every frame*/
+	virtual void Update();
 };
 bool operator<(const GameObject &go1, const GameObject& go2);
 bool SortZ(GameObject* c1, GameObject *c2);
@@ -56,7 +57,7 @@ bool SortZ(GameObject* c1, GameObject *c2);
 -Membre qui s'affiche
 --Sprite hair & body
 --Choix aléatoire
-
+--Nom en dessous du personnage
 -Membre qui se déplace
 
 -Membre qui peut être sélectionné

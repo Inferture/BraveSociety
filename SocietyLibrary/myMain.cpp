@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include <random>
 #include <map>
 #include <vector>
 #include <iostream>
@@ -11,12 +11,16 @@
 #include "myMain.h"
 #include "GameObject.h"
 #include "Member.h"
+#include "GameManager.h"
 using std::string;
 using std::cout;
 using std::unique_ptr;
 
+GameManager GM;
+
 int myMain()
 {
+	
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Brave Society");
 
 	window.setFramerateLimit(60);
@@ -50,8 +54,13 @@ int myMain()
 
 	spriteHair.setColor(sf::Color::Blue);
 	spriteBody.setColor(sf::Color::Magenta);
-	Member member(0,0,0,0,0,0,0,spriteHair,spriteBody);
-
+	Member member(0,0,0,"Mark",0,0,0,0,spriteHair,spriteBody);
+	sf::Sprite spriteHair2(spriteHair);
+	sf::Sprite spriteBody2(spriteBody);
+	Member member2(500, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2);
+	GM.AddMember(&member);
+	GM.AddMember(&member2);
+	GM.UpdateAll();
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -61,10 +70,25 @@ int myMain()
 			{
 				window.close();
 			}
-			window.clear(sf::Color(125, 125, 125, 255));
-			window.draw(sprite);
-			member.Draw(window, member.GetX(), member.GetY());
 		}
+		//Update
+		GM.UpdateAll();
+
+		//Render
+		window.clear(sf::Color(125, 125, 125, 255));
+		std::vector<Member*> members(GM.GetMembers());
+		for (unsigned int i = 0; i < members.size(); i++)
+		{
+			/*cout << "\nX:"<<members[i]->GetX();
+			cout << "\nY:"<<members[i]->GetY();
+			cout << "\nhairX:" << members[i]->hair.getPosition().x;
+			cout << "\nhairY:" << members[i]->GetY();*/
+			members[i]->Draw(window, members[i]->GetX(), members[i]->GetY());
+		}
+		//manager.UpdateAll();
+
+		//window.draw(sprite);
+		//member.Draw(window, member.GetX(), member.GetY());
 		window.display();
 	}
 
@@ -72,8 +96,10 @@ int myMain()
 }
 
 
-//OTHER STUFF
+//OTHER STUFF\\
 
+
+//Draws a white line from start to end with a given thickness
 void SetLine(sf::RectangleShape &line, sf::Vector2f start, sf::Vector2f end, float thickness)
 {
 	line.setOrigin(0, 0);
@@ -82,3 +108,14 @@ void SetLine(sf::RectangleShape &line, sf::Vector2f start, sf::Vector2f end, flo
 	line.setSize(sf::Vector2f(d, thickness));
 	line.setRotation(-std::atan2(end.x - start.x, end.y - start.y)*180.0f / 3.14159265359f + 90.0f);
 }
+
+
+//Draws a random number between 1(included) and n (included)
+int dice(int n)
+{
+	std::random_device rd;
+	std::default_random_engine engine(rd());
+	std::uniform_int_distribution<> distribution(1, n);
+	return distribution(engine);
+}
+

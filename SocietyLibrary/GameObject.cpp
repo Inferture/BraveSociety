@@ -99,3 +99,7 @@ pugi::xml_document GameObject::SerializeRec() const
 	return doc;
 }
 
+void GameObject::Update()
+{
+
+}
