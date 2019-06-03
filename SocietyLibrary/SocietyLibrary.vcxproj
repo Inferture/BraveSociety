@@ -150,6 +150,7 @@
     <ClInclude Include="ColorManipulation.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="infrastructure.h" />
     <ClInclude Include="Member.h" />
     <ClInclude Include="myMain.h" />
     <ClInclude Include="stdafx.h" />

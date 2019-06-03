@@ -114,10 +114,6 @@ int myMain()
 		std::vector<Member*> members(GM.GetMembers());
 		for (unsigned int i = 0; i < members.size(); i++)
 		{
-			/*cout << "\nX:"<<members[i]->GetX();
-			cout << "\nY:"<<members[i]->GetY();
-			cout << "\nhairX:" << members[i]->hair.getPosition().x;
-			cout << "\nhairY:" << members[i]->GetY();*/
 			members[i]->Draw(window, members[i]->GetX(), members[i]->GetY());
 		}
 		//manager.UpdateAll();
