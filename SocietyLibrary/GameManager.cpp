@@ -13,7 +13,10 @@ void GameManager::UpdateAll()
 	{
 		members[i]->Update();
 	}
-
+	for (unsigned int i = 0; i < infrastructures.size(); i++)
+	{
+		infrastructures[i]->Update();
+	}
 	
 	timer.restart();
 }
@@ -44,12 +47,17 @@ std::vector<Member*> GameManager::GetMembers() const
 	return members;
 }
 
+//All infrastructures of the game
+std::vector<Infrastructure*> GameManager::GetInfrastructures() const
+{
+	return infrastructures;
+}
+
 //All objects of the game
 std::vector<GameObject*> GameManager::GetGameObjects() const
 {
 	return gameObjects;
 }
-
 
 //Time elapsed since the last frame
 float GameManager::GetDeltaTime() const
@@ -60,4 +68,11 @@ float GameManager::GetDeltaTime() const
 void GameManager::AddMember(Member* member)
 {
 	members.push_back(member);
+	gameObjects.push_back(member);
+}
+
+void GameManager::AddInfrastructure(Infrastructure* infrastructure) 
+{
+	infrastructures.push_back(infrastructure);
+	gameObjects.push_back(infrastructure);
 }

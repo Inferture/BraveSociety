@@ -1,1 +1,4 @@
-﻿  SocietyTest.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyTest.exe
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  test.cpp
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  SocietyTest.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyTest.exe

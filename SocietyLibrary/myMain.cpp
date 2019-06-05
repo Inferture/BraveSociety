@@ -11,7 +11,10 @@
 #include "myMain.h"
 #include "GameObject.h"
 #include "Member.h"
+#include "infrastructure.h"
 #include "GameManager.h"
+
+
 using std::string;
 using std::cout;
 using std::unique_ptr;
@@ -87,6 +90,21 @@ int myMain()
 	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2, spriteStick2, spriteClothes2);
 	GM.AddMember(&member);
 	GM.AddMember(&member2);
+
+
+	sf::Sprite spriteHouse;
+	sf::Texture textureHouse;
+	textureHouse.setSmooth(true);
+	if (!textureHouse.loadFromFile("Sprites/house.png"))
+	{
+		cout << "House not found";
+	}
+	spriteHouse.setTexture(textureHouse);
+	spriteHouse.setColor(sf::Color::Red);
+
+	Infrastructure house(250,250,0,"House", 0, 0, 5, spriteHouse);
+	GM.AddInfrastructure(&house);
+
 	GM.UpdateAll();
 	while (window.isOpen())
 	{
@@ -112,10 +130,12 @@ int myMain()
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
 		std::vector<Member*> members(GM.GetMembers());
+		std::vector<Infrastructure*> infrastructures(GM.GetInfrastructures());
 		for (unsigned int i = 0; i < members.size(); i++)
 		{
 			members[i]->Draw(window, members[i]->GetX(), members[i]->GetY());
 		}
+		infrastructures[0]->Draw(window, infrastructures[0]->GetX(), infrastructures[0]->GetY(),false);
 		//manager.UpdateAll();
 
 		//window.draw(sprite);

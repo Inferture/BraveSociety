@@ -5,12 +5,11 @@
 #include "Member.h"
 
 
-enum infrastructureStatus
+/*enum infrastructureStatus
 {
 	USED,
 	EMPTY,
-	DYING,
-};
+}; */
 
 
 class Infrastructure : public GameObject
@@ -36,12 +35,20 @@ protected:
 	
 public:
 
-	Infrastructure(float x, float y, float z, std::string name, int bonusDefense, int bonusAttack, int maxCapacity,
-	sf::Sprite sprInfrastructure ) {};
+	Infrastructure(float x, float y, float z, std::string name, int bonusDefense, int bonusAttack, int maxCapacity, sf::Sprite sprInfrastructure) :
+		GameObject(x, y, z), name(name), bonusDefense(bonusDefense), bonusAttack(bonusAttack), maxCapacity(maxCapacity), sprInfrastructure(sprInfrastructure) {};
 
-	virtual void Draw(sf::RenderWindow &window, float x, float y) const;
+	virtual void Draw(sf::RenderWindow &window, float x, float y, bool selected) const override;
 	virtual bool IsTouched(float x_touch, float y_touch) const;
 	virtual void Scale(float scale);
-	virtual pugi::xml_document Serialize() const;
+	virtual pugi::xml_document Serialize() const; 
+
+	std::vector<Member *> getMembers() {
+		return membersInside;
+	}
+
+	void addMemberInside() {
+
+	}
 };
 

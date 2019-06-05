@@ -1,1 +1,2 @@
-﻿  BraveSociety.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\BraveSociety.exe
+﻿  BraveSociety.cpp
+c:\users\la ludotheque\source\repos\bravesociety\bravesociety\bravesociety.cpp(2): fatal error C1041: cannot open program database 'C:\Users\La Ludotheque\source\repos\BraveSociety\BraveSociety\Debug\vc141.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS

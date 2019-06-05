@@ -1,2 +1,25 @@
-﻿  Member.cpp
-  SocietyLibrary.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyLibrary.lib
+﻿  GameManager.cpp
+  GameObject.cpp
+  Infrastructure.cpp
+  Member.cpp
+  myMain.cpp
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\infrastructure.h(15): error C2011: 'Infrastructure': 'class' type redefinition
+  c:\users\la ludotheque\source\repos\bravesociety\societylibrary\infrastructure.h(15): note: see declaration of 'Infrastructure'
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(105): error C2079: 'house' uses undefined class 'Infrastructure'
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(105): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
+  c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(105): note: The initializer contains too many elements
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(106): error C2664: 'void GameManager::AddInfrastructure(Infrastructure *)': cannot convert argument 1 from 'int *' to 'Infrastructure *'
+  c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(106): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(121): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(122): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(138): error C2027: use of undefined type 'Infrastructure'
+  c:\users\la ludotheque\source\repos\bravesociety\societylibrary\infrastructure.h(15): note: see declaration of 'Infrastructure'
+  Generating Code...
