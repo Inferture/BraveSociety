@@ -18,6 +18,7 @@ private:
 	std::vector<Member*> members;
 	//Time elapsed since the last frame in seconds
 	float deltaTime;
+	GameObject* selectedObject;
 public:
 	
 	//Main clock

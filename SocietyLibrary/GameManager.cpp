@@ -13,21 +13,24 @@ void GameManager::UpdateAll()
 	{
 		members[i]->Update();
 	}
-
+	if (selectedObject)
+	{
+		selectedObject->Handle();
+	}
 	
 	timer.restart();
 }
 
 void GameManager::HandleObjectAt(float mouse_x, float mouse_y)
 {
+
 	for (unsigned int i = 0; i < members.size(); i++)
 	{
 		Member* member = members[i];
-		float delta_x(member->GetX()-mouse_x);
-		float delta_y(member->GetY() - mouse_y);
-		if (delta_x*delta_x + delta_y*delta_y < 0)
+		if (member->IsTouched(mouse_x, mouse_y))
 		{
-
+			selectedObject = member;
+			return;
 		}
 	}
 }

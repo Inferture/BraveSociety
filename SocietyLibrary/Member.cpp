@@ -9,7 +9,7 @@
 #include <imgui.h>
 #include <sfml-imgui/imgui-SFML.hpp>
 
-
+using std::to_string;
 Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
 	sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack, int defense) :
 	GameObject(x, y, z), name(name), aggressiveness(aggressiveness), tolerance(tolerance),
@@ -30,32 +30,36 @@ void Member::Die(Member* killer)
 {
 	state = DYING;
 	//Signal death to loved ones (parents, children, brothers/sisters)
-	for (auto rel : relationships)
+	if (killer)
 	{
-		for(auto s: rel.second.statuses)
+		for (auto rel : relationships)
 		{
-			if (s==BFF)
+			for (auto s : rel.second.statuses)
 			{
-				rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.3f);
-			}
-			else if (s == FRIEND)
-			{
-				rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.0f);
-			}
-			if (s == SIBLING)
-			{
-				rel.first->AddRelationStatus(killer, KILLERSIBLING, -1.3f);
-			}
-			if (s == PARENT)
-			{
-				rel.first->AddRelationStatus(killer, KILLERPARENT, -1.3f);
-			}
-			if (s == CHILD)
-			{
-				rel.first->AddRelationStatus(killer, KILLERCHILD, -1.3f);
+				if (s == BFF)
+				{
+					rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.3f);
+				}
+				else if (s == FRIEND)
+				{
+					rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.0f);
+				}
+				if (s == SIBLING)
+				{
+					rel.first->AddRelationStatus(killer, KILLERSIBLING, -1.3f);
+				}
+				if (s == PARENT)
+				{
+					rel.first->AddRelationStatus(killer, KILLERPARENT, -1.3f);
+				}
+				if (s == CHILD)
+				{
+					rel.first->AddRelationStatus(killer, KILLERCHILD, -1.3f);
+				}
 			}
 		}
 	}
+	
 }
 
 void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) const
@@ -124,6 +128,23 @@ pugi::xml_document Member::Serialize() const
 
 bool Member::IsTouched(float x_touch, float y_touch) const
 {
+	int x_px (int(x_touch- x));
+	int y_px (int(y_touch-y));
+	std::vector<sf::Sprite> sprites{ hair,body,clothes,stick };
+	for (auto sprite : sprites)
+	{
+		auto image (sprite.getTexture()->copyToImage());
+		auto vect(image.getSize());
+		if (x_px>=0 && y_px>=0 && x_px< sprite.getLocalBounds().width && y_px < sprite.getLocalBounds().height)//x_px < vect.x && y_px < vect.y)//
+		{
+			return true;//
+			if (true && image.getPixel(x_px, y_px).a > 10)//(sprite.getTexture()->copyToImage().getPixel(x_px, y_px).a > 10)
+			{
+				return true;
+			}
+		}
+		
+	}
 	return false;
 }
 void Member::Scale(float scale)
@@ -133,7 +154,32 @@ void Member::Scale(float scale)
 void Member::Handle()
 {
 	ImGui::Begin(name.c_str());
+	//ImGui::Begin("lel");
+	std::string reda("Red affiliation:");
+	reda += to_string((int)std::ceil(redAffiliation * 100)) + "/100";
+	
+	ImGui::TextColored(ImColor(255, 0, 0, 255), reda.c_str());
+	std::string greena("Green affiliation:");
+	greena += to_string((int)std::ceil(greenAffiliation * 100)) + "/100";
+	ImGui::TextColored(ImColor(0, 255, 0, 255), greena.c_str());
+	std::string tol("Tolerance:");
+	tol += to_string((int)std::ceil(tolerance * 100)) + "/100";
+	ImGui::Text(tol.c_str());
+	std::string agg("Aggressiveness:");
+	agg += to_string((int)std::ceil(aggressiveness * 100)) + "/100";
+	ImGui::Text(agg.c_str());
+	std::string att("Attack:");
+	att += to_string(attack);
+	ImGui::Text(att.c_str());
+	std::string def("Defense:");
+	def += to_string(defense);
+	ImGui::Text(def.c_str());
 
+	if (ImGui::Button("Kill"))
+	{
+		Die();
+	}
+	
 	ImGui::End();
 }
 void Member::Update()
@@ -145,12 +191,20 @@ void Member::Update()
 	if (state == DYING)
 	{
 		std::cout << "DYING";
+		std::vector<sf::Sprite*> sprites{ &hair,&clothes,&body,&stick };
+		for (auto sprite : sprites)
+		{
+			sf::Color sprColor(sprite->getColor());
+			sprColor.a = std::max(0, sprColor.a-(int)std::ceil(disappearSpeed*deltaTime));
+			sprite->setColor(sprColor);
+		}
+		/*
 		sf::Color hairColor(hair.getColor());
-		hairColor.a -= (int)std::ceil(disappearSpeed*deltaTime);
+		hairColor.a = std::max(0,(int)std::ceil(disappearSpeed*deltaTime));
 
 		sf::Color bodyColor(body.getColor());
 		hair.setColor(hairColor);
-		body.setColor(bodyColor);
+		body.setColor(bodyColor);*/
 	}
 	else if (state == MOVING)
 	{

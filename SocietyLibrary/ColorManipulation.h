@@ -25,3 +25,6 @@ returns a string with the last 2 characters of
 the hexadecimal value of a
 */
 std::string stringHex(int a);
+
+//A random skin color
+sf::Color RandomSkinColor();

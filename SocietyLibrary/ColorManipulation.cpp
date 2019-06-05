@@ -193,3 +193,12 @@ int hexString(std::string a)
 	}
 	return n;
 }
+
+sf::Color RandomSkinColor()
+{
+	//255,200,125
+	float r = ((float)rand() / (RAND_MAX))*128+ 128;
+	float g = r * 200.0f / 255.05;
+	float b = r * 125.0f / 255.0f;
+	return sf::Color(r, g, b);
+}

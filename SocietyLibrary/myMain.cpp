@@ -12,6 +12,8 @@
 #include "GameObject.h"
 #include "Member.h"
 #include "GameManager.h"
+#include "ColorManipulation.h"
+#include "SFML/Graphics.hpp"
 using std::string;
 using std::cout;
 using std::unique_ptr;
@@ -20,11 +22,13 @@ GameManager GM;
 
 int myMain()
 {
-	
+	srand(time(NULL));
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Brave Society");
 
-	window.setFramerateLimit(60);
 
+	sf::Clock deltaClock;
+	window.setFramerateLimit(60);
+	ImGui::SFML::Init(window);
 
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -55,7 +59,8 @@ int myMain()
 
 	spriteHair.setColor(sf::Color(70,10,10));
 	spriteBody.setColor(sf::Color(196, 144, 124));
-
+	spriteBody.setColor(RandomSkinColor());
+	
 	
 	sf::Sprite spriteClothes;
 	sf::Texture textureClothes;
@@ -81,23 +86,31 @@ int myMain()
 	Member member(500,0,0,"Mark",0,0,0,0,spriteHair,spriteBody, spriteStick, spriteClothes);
 	sf::Sprite spriteHair2(spriteHair);
 	sf::Sprite spriteBody2(spriteBody);
+	spriteBody2.setColor(RandomSkinColor());
 	sf::Sprite spriteStick2(spriteStick);
 	sf::Sprite spriteClothes2(spriteClothes);
 	spriteClothes2.setColor(sf::Color::Blue);
 	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair2, spriteBody2, spriteStick2, spriteClothes2);
 	GM.AddMember(&member);
 	GM.AddMember(&member2);
+
+
+	bool flagMouseDown(false);
+	
 	GM.UpdateAll();
 	while (window.isOpen())
 	{
 		sf::Event event;
+
+		ImGui::SFML::Update(window, deltaClock.restart());
 		while (window.pollEvent(event))
 		{
+
+			ImGui::SFML::ProcessEvent(event);
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
 			}
-
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			{
 				float mouse_x = sf::Mouse::getPosition().x;
@@ -105,12 +118,14 @@ int myMain()
 				GM.HandleObjectAt(mouse_x, mouse_y);
 			}
 		}
+		
 
+		
 		//Update
 		GM.UpdateAll();
-
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
+		ImGui::SFML::Render(window);
 		std::vector<Member*> members(GM.GetMembers());
 		for (unsigned int i = 0; i < members.size(); i++)
 		{

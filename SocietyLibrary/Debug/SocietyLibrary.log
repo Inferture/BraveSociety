@@ -1,12 +1,2 @@
-﻿  myMain.cpp
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(103): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(104): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-  SocietyLibrary.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyLibrary.lib
+﻿  Member.cpp
+  SocietyLibrary.vcxproj -> C:\Users\Q\source\repos\BraveSociety\Debug\SocietyLibrary.lib
