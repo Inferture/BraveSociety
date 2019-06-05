@@ -202,3 +202,9 @@ sf::Color RandomSkinColor()
 	float b = r * 125.0f / 255.0f;
 	return sf::Color(r, g, b);
 }
+
+sf::Color AttributeClothesColor(float BlueAffiliation, float RedAffiliation) {
+	float r = 255 * RedAffiliation;
+	float b = 255 * BlueAffiliation;
+	return sf::Color(r, 0, b);
+}

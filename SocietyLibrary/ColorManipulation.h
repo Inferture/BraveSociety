@@ -28,3 +28,6 @@ std::string stringHex(int a);
 
 //A random skin color
 sf::Color RandomSkinColor();
+
+//Attribute the right color according to the team affiliation
+sf::Color AttributeClothesColor(float blueAffiliation, float RedAffiliation);
