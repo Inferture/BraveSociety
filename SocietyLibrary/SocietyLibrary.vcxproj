@@ -161,6 +161,7 @@
     <ClCompile Include="ColorManipulation.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Infrastructure.cpp" />
     <ClCompile Include="Member.cpp" />
     <ClCompile Include="myMain.cpp" />
     <ClCompile Include="stdafx.cpp">

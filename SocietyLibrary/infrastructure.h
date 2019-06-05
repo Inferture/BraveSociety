@@ -1,5 +1,3 @@
-
-#include <map>
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
@@ -41,5 +39,9 @@ public:
 	Infrastructure(float x, float y, float z, std::string name, int bonusDefense, int bonusAttack, int maxCapacity,
 	sf::Sprite sprInfrastructure ) {};
 
+	virtual void Draw(sf::RenderWindow &window, float x, float y) const;
+	virtual bool IsTouched(float x_touch, float y_touch) const;
+	virtual void Scale(float scale);
+	virtual pugi::xml_document Serialize() const;
 };
 

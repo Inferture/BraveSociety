@@ -7,6 +7,8 @@ using std::unique_ptr;
 class GameObject
 {
 
+
+
 protected:
 	/*x coordinate*/
 	float x;
@@ -18,6 +20,13 @@ protected:
 	GameObject* parent;
 	//std::vector<unique_ptr<GameObject>> children;
 	//std::vector<GameObject*> children;
+	enum TeamStatus
+	{
+		RED,
+		BLUE,
+		NONE
+	};
+
 public:
 	GameObject();
 	GameObject(float x, float y, float z = 0);
