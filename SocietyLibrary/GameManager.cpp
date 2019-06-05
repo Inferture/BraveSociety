@@ -72,3 +72,7 @@ void GameManager::AddMember(Member* member)
 	gameObjects.push_back(member);
 }
 
+void GameManager::AddInfrastructure(Infrastructure* infrastructure) {
+	infrastructures.push_back(infrastructure);
+	gameObjects.push_back(infrastructure);
+}

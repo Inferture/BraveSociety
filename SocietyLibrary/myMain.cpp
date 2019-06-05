@@ -9,7 +9,6 @@
 #include <imgui.h>
 #include <sfml-imgui/imgui-SFML.hpp>
 #include "myMain.h"
-#include "GameObject.h"
 #include "Member.h"
 #include "GameManager.h"
 #include "ColorManipulation.h"
@@ -94,6 +93,18 @@ int myMain()
 	GM.AddMember(&member);
 	GM.AddMember(&member2);
 
+	sf::Sprite spriteInfrastructure;
+	sf::Texture textureInfrastructure;
+	textureInfrastructure.setSmooth(true);
+	if (!textureInfrastructure.loadFromFile("Sprites/house.png"))
+	{
+		cout << "House not found";
+	}
+	spriteInfrastructure.setTexture(textureInfrastructure);
+
+	spriteInfrastructure.setColor(sf::Color::Red);
+	//Infrastructure house(250, 250, 0, "House", 0, 0, 5, spriteInfrastructure);
+	//GM.AddInfrastructure(&house);
 
 	bool flagMouseDown(false);
 	
