@@ -34,7 +34,9 @@ protected:
 public:
 
 	Infrastructure(float x, float y, float z, std::string name, int bonusDefense, int bonusAttack, int maxCapacity,
-	sf::Sprite sprInfrastructure ) : GameObject(x,y,z), name(name), bonusDefense(bonusDefense), bonusAttack(bonusAttack), maxCapacity(maxCapacity), sprInfrastructure(sprInfrastructure) {};
+	sf::Sprite sprInfrastructure ) : GameObject(x,y,z), name(name), bonusDefense(bonusDefense), bonusAttack(bonusAttack), maxCapacity(maxCapacity), sprInfrastructure(sprInfrastructure) {
+		this->sprInfrastructure.setPosition(x, y);
+	};
 
 	virtual void Draw(sf::RenderWindow &window, float x, float y, bool selected) const;
 	virtual bool IsTouched(float x_touch, float y_touch) const;

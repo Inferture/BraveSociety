@@ -103,8 +103,8 @@ int myMain()
 	spriteInfrastructure.setTexture(textureInfrastructure);
 
 	spriteInfrastructure.setColor(sf::Color::Red);
-	//Infrastructure house(250, 250, 0, "House", 0, 0, 5, spriteInfrastructure);
-	//GM.AddInfrastructure(&house);
+	Infrastructure house(50, 150, 0, "House", 0, 0, 5, spriteInfrastructure);
+	GM.AddInfrastructure(&house);
 
 	bool flagMouseDown(false);
 	
@@ -138,10 +138,13 @@ int myMain()
 		window.clear(sf::Color(125, 125, 125, 255));
 		ImGui::SFML::Render(window);
 		std::vector<Member*> members(GM.GetMembers());
+		std::vector<Infrastructure*> infrastructures(GM.GetInfrastructures());
+		infrastructures[0]->Draw(window, infrastructures[0]->GetX(), infrastructures[0]->GetY(), false);
 		for (unsigned int i = 0; i < members.size(); i++)
 		{
 			members[i]->Draw(window, members[i]->GetX(), members[i]->GetY());
 		}
+		
 		//manager.UpdateAll();
 
 		//window.draw(sprite);
