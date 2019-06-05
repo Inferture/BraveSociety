@@ -10,12 +10,22 @@
 #include <sfml-imgui/imgui-SFML.hpp>
 
 using std::to_string;
-Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
+
+
+const extern std::vector<std::string> RelationStatusStrings({ "Parent" , "Child","Sibling","Friend","BFF", "Enemy", "Killer of a sibling",
+"Killer of a parent","Killer of a child","Killer of a friend" });
+
+Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float blueAffiliation, float redAffiliation,
 	sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack, int defense) :
 	GameObject(x, y, z), name(name), aggressiveness(aggressiveness), tolerance(tolerance),
-	greenAffiliation(greenAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
+	blueAffiliation(blueAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
 	body(body), clothes(clothes), stick(stick), attack(attack), defense(defense), disappearSpeed(100)
 {
+	sf::Font font;
+	font.loadFromFile("Fonts/Augusta.ttf");
+	nametag.setFillColor(sf::Color::Blue);
+	nametag.setOrigin(nametag.getLocalBounds().width / 2, nametag.getLocalBounds().height / 2);
+	nametag.setPosition(x + body.getLocalBounds().width / 2, y + body.getLocalBounds().height);
 
 	//this->body.setOrigin(this->body.getLocalBounds().width/2, this->body.getLocalBounds().height / 2);
 	this->body.setPosition(x, y);
@@ -64,14 +74,14 @@ void Member::Die(Member* killer)
 
 void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) const
 {
-	sf::Font font;
+	/*sf::Font font;
 	font.loadFromFile("Fonts/Augusta.ttf");
 	sf::Text nameTag(name, font);
 	nameTag.setFillColor(sf::Color::Blue);
 	nameTag.setOrigin(nameTag.getLocalBounds().width / 2, nameTag.getLocalBounds().height / 2);
-	nameTag.setPosition(x + body.getLocalBounds().width/2, y+body.getLocalBounds().height);
+	nameTag.setPosition(x + body.getLocalBounds().width/2, y+body.getLocalBounds().height);*/
 
-	window.draw(nameTag);
+	window.draw(nametag);
 	window.draw(body);
 	window.draw(stick);
 	window.draw(clothes);
@@ -103,8 +113,8 @@ pugi::xml_document Member::Serialize() const
 	pugi::xml_attribute attTolerance = node.append_attribute("tolerance");
 	attTolerance.set_value(tolerance);
 
-	pugi::xml_attribute attGreen = node.append_attribute("greenAffiliation");
-	attGreen.set_value(greenAffiliation);
+	pugi::xml_attribute attBlue = node.append_attribute("blueAffiliation");
+	attBlue.set_value(blueAffiliation);
 
 	pugi::xml_attribute attRed = node.append_attribute("redAffiliation");
 	attRed.set_value(redAffiliation);
@@ -159,9 +169,9 @@ void Member::Handle()
 	reda += to_string((int)std::ceil(redAffiliation * 100)) + "/100";
 	
 	ImGui::TextColored(ImColor(255, 0, 0, 255), reda.c_str());
-	std::string greena("Green affiliation:");
-	greena += to_string((int)std::ceil(greenAffiliation * 100)) + "/100";
-	ImGui::TextColored(ImColor(0, 255, 0, 255), greena.c_str());
+	std::string bluea("Blue affiliation:");
+	bluea += to_string((int)std::ceil(blueAffiliation * 100)) + "/100";
+	ImGui::TextColored(ImColor(38, 104, 211, 255), bluea.c_str());
 	std::string tol("Tolerance:");
 	tol += to_string((int)std::ceil(tolerance * 100)) + "/100";
 	ImGui::Text(tol.c_str());
@@ -174,6 +184,21 @@ void Member::Handle()
 	std::string def("Defense:");
 	def += to_string(defense);
 	ImGui::Text(def.c_str());
+
+	ImGui::Spacing;
+	ImGui::BulletText("Relations");
+	for (auto v : relationships)
+	{
+		ImGui::Text(v.first->name.c_str());
+		std::string rel("Relation:" + to_string(v.second.relation));
+		ImGui::Text(rel.c_str());
+		
+		for (auto status : v.second.statuses)
+		{
+			ImGui::Text(RelationStatusStrings[status].c_str());
+		}
+		ImGui::Spacing;
+	}
 
 	if (ImGui::Button("Kill"))
 	{
@@ -233,7 +258,7 @@ void Member::Update()
 			//Interaction
 			else
 			{
-				float diff(std::abs(greenAffiliation - targetMember->greenAffiliation));
+				float diff(std::abs(blueAffiliation - targetMember->blueAffiliation));
 				diff += (std::abs(redAffiliation - targetMember->redAffiliation));
 				
 				double rConflict(((float)rand() / (RAND_MAX)));

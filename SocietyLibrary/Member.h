@@ -58,8 +58,8 @@ protected:
 	float aggressiveness;
 	// 0 - 1, inclination towards accepting others and avoiding conflict
 	float tolerance;
-	// 0 - 1, affiliation towards the green clan
-	float greenAffiliation;
+	// 0 - 1, affiliation towards the blue clan
+	float blueAffiliation;
 	//0 - 1, affiliation towards the red clan
 	float redAffiliation;
 	//can kill if attack > other's defense
@@ -74,12 +74,14 @@ protected:
 	sf::Sprite stick;
 	//Sprite of clothes, with the "team" color
 	sf::Sprite clothes;
+	//Nametag, is displayed below the character
+	sf::Text nametag;
 	//Relationships with other members
 	std::map<Member*, Relationship> relationships;
 public:
 
 	
-	Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
+	Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float blueAffiliation, float redAffiliation,
 		sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack=0, int defense=0);
 
 	//Dies and sends the message of their death to their loved ones
