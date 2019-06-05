@@ -80,26 +80,28 @@ int myMain()
 	spriteStick.setTexture(textureStick);
 
 	spriteStick.setColor(sf::Color::White);
-	spriteClothes.setColor(sf::Color::Red);
-
+	sf::Sprite spriteclothes2(spriteClothes);
+	sf::Sprite spriteClothes3(spriteClothes);
+	sf::Sprite spriteBody2(spriteBody);
+	sf::Sprite spriteBody3(spriteBody);
 	spriteBody.setColor(RandomSkinColor());
-	Member member3(500, 0, 0, "Mark", 0, 0, 0, 0, spriteHair, spriteBody, spriteStick, spriteClothes);
-	spriteBody.setColor(RandomSkinColor());
-	spriteClothes.setColor(sf::Color::Blue);
-	Member member2(0, 500, 0, "Pawl", 0, 0, 0, 0, spriteHair, spriteBody, spriteStick, spriteClothes);
-	GM.AddMember(&member3);
+	spriteClothes.setColor(AttributeClothesColor(0, 1));
+	Member member1(dice(1000), dice(500), 0, "Mark", 0, 0, 0, 1, spriteHair, spriteBody, spriteStick, spriteClothes);
+	GM.AddMember(&member1);
+	spriteBody2.setColor(RandomSkinColor());
+	
+	spriteclothes2.setColor(AttributeClothesColor(1, 0));
+	Member member2(dice(1000), dice(500), 0, "Pawl", 0, 0, 1, 0, spriteHair, spriteBody2, spriteStick, spriteclothes2);
+	
 	GM.AddMember(&member2);
-	int coordX = 0;
-	int coordY = 0;
+
 	float redAffiliation = (float)rand() / RAND_MAX;
 	float blueAffiliation = (float)rand() / RAND_MAX;
 
-	coordX = dice(500);
-	coordY = dice(500);
-	spriteBody.setColor(RandomSkinColor());
-	spriteClothes.setColor(AttributeClothesColor(redAffiliation, blueAffiliation));
-	Member member(coordX, coordY, 0, "Seki", 0, 0, blueAffiliation, redAffiliation, spriteHair, spriteBody, spriteStick, spriteClothes);
-	GM.AddMember(&member);
+	spriteBody3.setColor(RandomSkinColor());
+	spriteClothes3.setColor(AttributeClothesColor(redAffiliation, blueAffiliation));
+	Member member3(dice(1000), dice(500), 0, "Seki", 0, 0, blueAffiliation, redAffiliation, spriteHair, spriteBody3, spriteStick, spriteClothes3);
+	GM.AddMember(&member3);
 
 
 
