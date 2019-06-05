@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Member.h"
+#include "infrastructure.h"
 #include <vector>
 #include <chrono>
 #include <random>
@@ -16,6 +17,8 @@ private:
 	std::vector<GameObject*> gameObjects;
 	//All members of the game
 	std::vector<Member*> members;
+	//All infratructures of the game
+	std::vector<Infrastructure*> infrastructures;
 	//Time elapsed since the last frame in seconds
 	float deltaTime;
 	GameObject* selectedObject;
@@ -27,10 +30,14 @@ public:
 	std::vector<GameObject*> GetGameObjects() const;
 	//All members of the game
 	std::vector<Member*> GetMembers() const;
+	//All infrastructures of the game
+	std::vector<Infrastructure*> GetInfrastructures() const;
 	//Time elapsed since the last frame
 	float GetDeltaTime() const;
 	//Create a member
 	void AddMember(Member* member);
+	//Create an infrastructure
+	void AddInfrastructure(Infrastructure* infrastructure);
 	//Called every frame;
 	void UpdateAll();
 	//Opens the window for the object clicked

@@ -47,11 +47,17 @@ std::vector<Member*> GameManager::GetMembers() const
 	return members;
 }
 
+std::vector<Infrastructure*> GameManager::GetInfrastructures() const {
+	return infrastructures;
+}
+
 //All objects of the game
 std::vector<GameObject*> GameManager::GetGameObjects() const
 {
 	return gameObjects;
 }
+
+
 
 
 //Time elapsed since the last frame
@@ -63,4 +69,6 @@ float GameManager::GetDeltaTime() const
 void GameManager::AddMember(Member* member)
 {
 	members.push_back(member);
+	gameObjects.push_back(member);
 }
+

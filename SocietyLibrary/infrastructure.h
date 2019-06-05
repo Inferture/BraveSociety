@@ -8,8 +8,7 @@
 enum infrastructureStatus
 {
 	USED,
-	EMPTY,
-	DYING,
+	EMPTY
 };
 
 
@@ -17,8 +16,6 @@ class Infrastructure : public GameObject
 {
 
 private:
-	float actionTimer;
-	float actionTime;
 	int maxCapacity;
 	std::vector<Member *> membersInside;
 
@@ -37,7 +34,7 @@ protected:
 public:
 
 	Infrastructure(float x, float y, float z, std::string name, int bonusDefense, int bonusAttack, int maxCapacity,
-	sf::Sprite sprInfrastructure ) {};
+	sf::Sprite sprInfrastructure ) : GameObject(x,y,z), name(name), bonusDefense(bonusDefense), bonusAttack(bonusAttack), maxCapacity(maxCapacity), sprInfrastructure(sprInfrastructure) {};
 
 	virtual void Draw(sf::RenderWindow &window, float x, float y) const;
 	virtual bool IsTouched(float x_touch, float y_touch) const;
