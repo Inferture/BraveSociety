@@ -104,7 +104,7 @@ public:
 	//Add a status to the relation with target.
 	//if relative, their relation jauge is added relation
 	//else, it becomes relation
-	void AddRelationStatus(Member* target, RelationStatus status, float relation=0.0f, bool relative =true );
+	void AddRelationStatus(Member* target, RelationStatus status, float relation = 0.0f, bool relative = true);
 
 	//if relative, their relation jauge is added relation
 	//else, it becomes relation
@@ -113,7 +113,7 @@ public:
 	virtual void Translate(float x, float y);
 	//Display the info window
 	virtual void Handle();
-	//
+	//checker si le personnage entre en territoire ennemi
 	
 }; 
 bool IsFamily(RelationStatus status);

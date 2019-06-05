@@ -403,6 +403,7 @@ void Member::Translate(float x, float y)
 }
 
 
+
 bool Member::Attack(Member* target)
 {
 	if (target->defense<attack)
@@ -519,4 +520,5 @@ bool IsFriendly(RelationStatus status)
 {
 	return status == FRIEND || status == BFF;
 }
+
 
