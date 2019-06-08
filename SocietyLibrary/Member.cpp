@@ -10,13 +10,14 @@
 #include <sfml-imgui/imgui-SFML.hpp>
 
 using std::to_string;
-Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
+Member::Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float blueAffiliation, float redAffiliation,
 	sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack, int defense) :
 	GameObject(x, y, z), name(name), aggressiveness(aggressiveness), tolerance(tolerance),
-	greenAffiliation(greenAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
-	body(body), clothes(clothes), stick(stick), attack(attack), defense(defense), disappearSpeed(100)
+	blueAffiliation(blueAffiliation), redAffiliation(redAffiliation), hair(hair), speed(30),
+	body(body), clothes(clothes), stick(stick), attack(attack), defense(defense), disappearSpeed(100),
+	id(nbMember), nametag(InitTag(name))
 {
-
+	++nbMember;
 	//this->body.setOrigin(this->body.getLocalBounds().width/2, this->body.getLocalBounds().height / 2);
 	this->body.setPosition(x, y);
 	//this->hair.setOrigin(this->hair.getLocalBounds().width / 2, this->hair.getLocalBounds().height / 2);
@@ -26,7 +27,7 @@ Member::Member(float x, float y, float z, std::string name, float aggressiveness
 	this->stick.setPosition(x, y);
 }
 
-void Member::Die(Member* killer)
+void Member::Die(int killer)
 {
 	state = DYING;
 	//Signal death to loved ones (parents, children, brothers/sisters)
@@ -38,40 +39,32 @@ void Member::Die(Member* killer)
 			{
 				if (s == BFF)
 				{
-					rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.3f);
+					GM.members[rel.first].get()->AddRelationStatus(killer, KILLERFRIEND, -1.3f);
 				}
 				else if (s == FRIEND)
 				{
-					rel.first->AddRelationStatus(killer, KILLERFRIEND, -1.0f);
+					GM.members[rel.first].get()->AddRelationStatus(killer, KILLERFRIEND, -1.0f);
 				}
 				if (s == SIBLING)
 				{
-					rel.first->AddRelationStatus(killer, KILLERSIBLING, -1.3f);
+					GM.members[rel.first].get()->AddRelationStatus(killer, KILLERSIBLING, -1.3f);
 				}
 				if (s == PARENT)
 				{
-					rel.first->AddRelationStatus(killer, KILLERPARENT, -1.3f);
+					GM.members[rel.first].get()->AddRelationStatus(killer, KILLERPARENT, -1.3f);
 				}
 				if (s == CHILD)
 				{
-					rel.first->AddRelationStatus(killer, KILLERCHILD, -1.3f);
+					GM.members[rel.first].get()->AddRelationStatus(killer, KILLERCHILD, -1.3f);
 				}
 			}
 		}
 	}
-	
 }
 
 void Member::Draw(sf::RenderWindow &window, float x, float y, bool selected) const
 {
-	sf::Font font;
-	font.loadFromFile("Fonts/Augusta.ttf");
-	sf::Text nameTag(name, font);
-	nameTag.setFillColor(sf::Color::Blue);
-	nameTag.setOrigin(nameTag.getLocalBounds().width / 2, nameTag.getLocalBounds().height / 2);
-	nameTag.setPosition(x + body.getLocalBounds().width/2, y+body.getLocalBounds().height);
-
-	window.draw(nameTag);
+	window.draw(nametag);
 	window.draw(body);
 	window.draw(stick);
 	window.draw(clothes);
@@ -103,8 +96,8 @@ pugi::xml_document Member::Serialize() const
 	pugi::xml_attribute attTolerance = node.append_attribute("tolerance");
 	attTolerance.set_value(tolerance);
 
-	pugi::xml_attribute attGreen = node.append_attribute("greenAffiliation");
-	attGreen.set_value(greenAffiliation);
+	pugi::xml_attribute attBlue = node.append_attribute("blueAffiliation");
+	attBlue.set_value(blueAffiliation);
 
 	pugi::xml_attribute attRed = node.append_attribute("redAffiliation");
 	attRed.set_value(redAffiliation);
@@ -125,7 +118,11 @@ pugi::xml_document Member::Serialize() const
 
 	return doc;
 }
-
+int Member::nbMember(0);
+int Member::GetId()
+{
+	return id;
+}
 bool Member::IsTouched(float x_touch, float y_touch) const
 {
 	int x_px (int(x_touch- x));
@@ -159,9 +156,9 @@ void Member::Handle()
 	reda += to_string((int)std::ceil(redAffiliation * 100)) + "/100";
 	
 	ImGui::TextColored(ImColor(255, 0, 0, 255), reda.c_str());
-	std::string greena("Green affiliation:");
-	greena += to_string((int)std::ceil(greenAffiliation * 100)) + "/100";
-	ImGui::TextColored(ImColor(0, 255, 0, 255), greena.c_str());
+	std::string bluea("Blue affiliation:");
+	bluea += to_string((int)std::ceil(blueAffiliation * 100)) + "/100";
+	ImGui::TextColored(ImColor(0, 255, 0, 255), bluea.c_str());
 	std::string tol("Tolerance:");
 	tol += to_string((int)std::ceil(tolerance * 100)) + "/100";
 	ImGui::Text(tol.c_str());
@@ -175,11 +172,25 @@ void Member::Handle()
 	def += to_string(defense);
 	ImGui::Text(def.c_str());
 
+	ImGui::Text("RELATIONS:");
+
+	for (auto r : relationships)
+	{
+		std::string s(GM.members[r.first].get()->name);
+		s += ": ";
+		s+= to_string((int)std::floor(r.second.relation * 100));
+		ImGui::Text(s.c_str());
+		for (auto s : r.second.statuses)
+		{
+			ImGui::BulletText(RelationStatusStrings[s].c_str());
+		}
+	}
+
+
 	if (ImGui::Button("Kill"))
 	{
 		Die();
 	}
-	
 	ImGui::End();
 }
 void Member::Update()
@@ -209,10 +220,10 @@ void Member::Update()
 	else if (state == MOVING)
 	{
 		std::cout << "MOVING";
-		if (targetMember)
+		if (targetMemberId>=0)
 		{
-			float targetX(targetMember->GetX());
-			float targetY(targetMember->GetY());
+			float targetX(GM.members[targetMemberId].get()->GetX());
+			float targetY(GM.members[targetMemberId].get()->GetY());
 			
 			float delta_x(targetX - x);
 			float delta_y(targetY - y);
@@ -233,14 +244,14 @@ void Member::Update()
 			//Interaction
 			else
 			{
-				float diff(std::abs(greenAffiliation - targetMember->greenAffiliation));
-				diff += (std::abs(redAffiliation - targetMember->redAffiliation));
+				float diff(std::abs(blueAffiliation - GM.members[targetMemberId].get()->blueAffiliation));
+				diff += (std::abs(redAffiliation - GM.members[targetMemberId].get()->redAffiliation));
 				
 				double rConflict(((float)rand() / (RAND_MAX)));
-				if (2* rConflict <diff-tolerance-targetMember->tolerance)
+				if (2* rConflict <diff-tolerance-GM.members[targetMemberId].get()->tolerance)
 				{
-					AddRelation(targetMember, -0.3f);
-					targetMember->AddRelation(this, -0.3f);
+					AddRelation(targetMemberId, -0.3f);
+					GM.members[targetMemberId].get()->AddRelation(id, -0.3f);
 					//Conflict
 					double rAttack(((float)rand() / (RAND_MAX)));
 					if (rAttack < aggressiveness)
@@ -255,26 +266,26 @@ void Member::Update()
 						actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
 						actionTimer = 0.0f;
 					}
-					if(rAttack<targetMember->aggressiveness)//aggression
+					if(rAttack<GM.members[targetMemberId].get()->aggressiveness)//aggression
 					{
-						targetMember->state = FIGHTING;
-						targetMember->actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
-						targetMember->actionTimer = 0.0f;
+						GM.members[targetMemberId].get()->state = FIGHTING;
+						GM.members[targetMemberId].get()->actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
+						GM.members[targetMemberId].get()->actionTimer = 0.0f;
 					}
 					else//no aggression
 					{
-						targetMember->state = TALKING;
-						targetMember->actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
-						targetMember->actionTimer = 0.0f;
+						GM.members[targetMemberId].get()->state = TALKING;
+						GM.members[targetMemberId].get()->actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
+						GM.members[targetMemberId].get()->actionTimer = 0.0f;
 					}
 
-					if (targetMember->relationships[this].relation < -0.6f)
+					if (GM.members[targetMemberId].get()->relationships[id].relation < -0.6f)
 					{
-						targetMember->AddRelationStatus(this, ENEMY);
+						GM.members[targetMemberId].get()->AddRelationStatus(id, ENEMY);
 					}
-					if (relationships[targetMember].relation < -0.6f)
+					if (relationships[targetMemberId].relation < -0.6f)
 					{
-						AddRelationStatus(targetMember, ENEMY);
+						AddRelationStatus(targetMemberId, ENEMY);
 					}
 				}
 				else
@@ -282,26 +293,26 @@ void Member::Update()
 					state = TALKING;
 					actionTime = ((float)rand() / (RAND_MAX)) * 5.0f + 1.0f;
 					actionTimer = 0.0f;
-					targetMember->state = TALKING;
-					targetMember->actionTime = actionTime;
-					targetMember->actionTimer = 0.0f;
-					AddRelation(targetMember, 0.3f);
-					targetMember->AddRelation(this, 0.3f);
-					if (targetMember->relationships[this].relation > 0.6f)
+					GM.members[targetMemberId].get()->state = TALKING;
+					GM.members[targetMemberId].get()->actionTime = actionTime;
+					GM.members[targetMemberId].get()->actionTimer = 0.0f;
+					AddRelation(targetMemberId, 0.3f);
+					GM.members[targetMemberId].get()->AddRelation(id, 0.3f);
+					if (GM.members[targetMemberId].get()->relationships[id].relation > 0.6f)
 					{
-						targetMember->AddRelationStatus(this, FRIEND);
+						GM.members[targetMemberId].get()->AddRelationStatus(id, FRIEND);
 					}
-					if (relationships[targetMember].relation > 0.6f)
+					if (relationships[targetMemberId].relation > 0.6f)
 					{
-						AddRelationStatus(targetMember, FRIEND);
+						AddRelationStatus(targetMemberId, FRIEND);
 					}
-					if (targetMember->relationships[this].relation > 0.8f)
+					if (GM.members[targetMemberId].get()->relationships[id].relation > 0.8f)
 					{
-						targetMember->AddRelationStatus(this, BFF);
+						GM.members[targetMemberId].get()->AddRelationStatus(id, BFF);
 					}
-					if (relationships[targetMember].relation > 0.8f)
+					if (relationships[targetMemberId].relation > 0.8f)
 					{
-						AddRelationStatus(targetMember, BFF);
+						AddRelationStatus(targetMemberId, BFF);
 					}
 				}
 
@@ -319,14 +330,14 @@ void Member::Update()
 		{
 			double rRipost(((double)rand() / (RAND_MAX)));
 			//Attack target
-			if (!Attack(targetMember) && targetMember->aggressiveness + 0.5f > rRipost)
+			if (!Attack(targetMemberId) && GM.members[targetMemberId].get()->aggressiveness + 0.5f > rRipost)
 			{
 				//Target riposts
-				targetMember->state = FIGHTING;
-				targetMember->Attack(this);
-				targetMember->state = IDLE;
-				targetMember->actionTime = ((float)rand() / (RAND_MAX)) * 3 + 1;
-				targetMember->actionTimer = 0;
+				GM.members[targetMemberId].get()->state = FIGHTING;
+				GM.members[targetMemberId].get()->Attack(id);
+				GM.members[targetMemberId].get()->state = IDLE;
+				GM.members[targetMemberId].get()->actionTime = ((float)rand() / (RAND_MAX)) * 3 + 1;
+				GM.members[targetMemberId].get()->actionTimer = 0;
 			}
 			state = IDLE;
 			actionTime = ((float)rand() / (RAND_MAX)) * 3 + 1;
@@ -336,10 +347,10 @@ void Member::Update()
 	else if (state == TALKING)
 	{
 		std::cout << "TALKING";
-		AddRelation(targetMember, 0.0f);
-		targetMember->AddRelation(this, 0.0f);
+		AddRelation(targetMemberId, 0.0f);
+		GM.members[targetMemberId].get()->AddRelation(id, 0.0f);
 		//\\draw talking icon
-		if (targetMember->state != TALKING)
+		if (GM.members[targetMemberId].get()->state != TALKING)
 		{
 			//\\dead ?
 		}
@@ -347,14 +358,14 @@ void Member::Update()
 		{
 			double rHangout(((double)rand() / (RAND_MAX)));
 			//Hangout target
-			float r1(relationships[targetMember].relation);
-			float r2(targetMember->relationships[this].relation);
+			float r1(relationships[targetMemberId].relation);
+			float r2(GM.members[targetMemberId].get()->relationships[id].relation);
 			
 			if (2*rHangout<r1+r2)
 			{
 				//\\Go somewhere
-				AddRelation(targetMember, 0.3f);
-				targetMember->AddRelation(this, 0.3f);
+				AddRelation(targetMemberId, 0.3f);
+				GM.members[targetMemberId].get()->AddRelation(id, 0.3f);
 			}
 			state = IDLE;
 			actionTime = ((float)rand() / (RAND_MAX)) * 3 + 1;
@@ -370,16 +381,22 @@ void Member::Update()
 			actionTimer = 0;
 			if ((double)rand() / (RAND_MAX) > 0.5f)
 			{
-				state = MOVING;
-				if (GM.GetMembers().size()>1)
+				if (GM.members.size()>1)
 				{
-					std::vector<Member*> members(GM.GetMembers());
-					int t(dice(members.size()) - 1);
-					if (GM.GetMembers()[t] == this)
+					state = MOVING;
+					auto it = GM.members.begin();
+
+					int t(dice(GM.members.size()) - 1);
+					
+					if (it->first == id)
 					{
-						t = (t + dice(GM.GetMembers().size() - 1) - 1) % GM.GetMembers().size();
+						t = (t + dice(GM.members.size() - 1)) % GM.members.size();
+
+						it = GM.members.begin();
+						std::advance(it, t);
 					}
-					targetMember = GM.GetMembers()[t];
+					
+					targetMemberId = it->first;
 				}
 			}
 			else
@@ -400,23 +417,24 @@ void Member::Translate(float x, float y)
 	body.setPosition(this->x, this->y);
 	stick.setPosition(this->x, this->y);
 	clothes.setPosition(this->x, this->y);
+	nametag.setPosition(this->x + body.getLocalBounds().width / 2, this->y + body.getLocalBounds().height);
 }
 
 
 
-bool Member::Attack(Member* target)
+bool Member::Attack(int target)
 {
-	if (target->defense<attack)
+	if (GM.members[target].get()->defense<attack)
 	{
-		target->Die(this);
+		GM.members[target].get()->Die(id);
 		return true;
 	}
 	return false;
 }
 
-void Member::AddRelation(Member* target, float relation, bool relative)
+void Member::AddRelation(int target, float relation, bool relative)
 {
-	std::map<Member*, Relationship>::iterator it = relationships.find(target);
+	std::map<int, Relationship>::iterator it = relationships.find(target);
 	Relationship relationship;
 
 	if (it==relationships.end())
@@ -436,10 +454,17 @@ void Member::AddRelation(Member* target, float relation, bool relative)
 		}
 	}
 }
-
-void Member::AddRelationStatus(Member* target,RelationStatus status, float relation, bool relative)
+sf::Text Member::InitTag(std::string name)
 {
-	std::map<Member*, Relationship>::iterator it = relationships.find(target);
+	sf::Text nameTag(name, tagfont);
+	nameTag.setFillColor(sf::Color::Blue);
+	nameTag.setOrigin(nameTag.getLocalBounds().width / 2, nameTag.getLocalBounds().height / 2);
+	nameTag.setPosition(x + body.getLocalBounds().width / 2, y + body.getLocalBounds().height);
+	return nameTag;
+}
+void Member::AddRelationStatus(int targetId ,RelationStatus status, float relation, bool relative)
+{
+	std::map<int, Relationship>::iterator it = relationships.find(targetId);
 	Relationship relationship;
 
 	if (it == relationships.end())
@@ -447,7 +472,7 @@ void Member::AddRelationStatus(Member* target,RelationStatus status, float relat
 		relationship.relation = relation;
 		AddStatus(relationship.statuses, status);
 		
-		relationships.insert({ target, relationship });
+		relationships.insert({ targetId, relationship });
 	}
 	else
 	{
@@ -488,7 +513,7 @@ void AddStatus(std::vector<RelationStatus> &statuses, RelationStatus status)
 		}
 		statuses.push_back(status);
 	}
-	if (IsFriendly(status))
+	else if (IsFriendly(status))
 	{
 		unsigned int i(0);
 		while (i < statuses.size())
@@ -503,6 +528,10 @@ void AddStatus(std::vector<RelationStatus> &statuses, RelationStatus status)
 				++i;
 			}
 		}
+		statuses.push_back(status);
+	}
+	else
+	{
 		statuses.push_back(status);
 	}
 }

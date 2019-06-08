@@ -18,94 +18,61 @@ using std::cout;
 using std::unique_ptr;
 
 GameManager GM;
+sf::Font tagfont;
+
+std::vector<sf::Texture> texturesHair;
+std::vector<sf::Texture> texturesBody;
+std::vector<sf::Texture> texturesClothes;
+std::vector<sf::Texture> texturesStick;
+
 
 int myMain()
 {
 	srand(time(NULL));
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Brave Society");
 
+	tagfont.loadFromFile("Fonts/Augusta.ttf");
 
 	sf::Clock deltaClock;
 	window.setFramerateLimit(60);
 	ImGui::SFML::Init(window);
 
-	sf::Sprite sprite;
-	sf::Texture texture;
-	texture.setSmooth(true);
-	if (!texture.loadFromFile("Sprites/Hamster.png"))
-	{
-		cout << "Hamster not found";
-	}
-	sprite.setTexture(texture);
-
-	sf::Sprite spriteHair;
+	
 	sf::Texture textureHair;
 	textureHair.setSmooth(true);
 	if (!textureHair.loadFromFile("Sprites/hair.png"))
 	{
 		cout << "Hair not found";
 	}
-	spriteHair.setTexture(textureHair);
+	texturesHair.push_back(textureHair);
 
-	sf::Sprite spriteBody;
+
 	sf::Texture textureBody;
 	textureBody.setSmooth(true);
 	if (!textureBody.loadFromFile("Sprites/body.png"))
 	{
 		cout << "Body not found";
 	}
-	spriteBody.setTexture(textureBody);
+	texturesBody.push_back(textureBody);
 
-	spriteHair.setColor(sf::Color(70,10,10));
-	spriteBody.setColor(sf::Color(196, 144, 124));
-	spriteBody.setColor(RandomSkinColor());
 	
-	
-	sf::Sprite spriteClothes;
 	sf::Texture textureClothes;
 	textureClothes.setSmooth(true);
 	if (!textureClothes.loadFromFile("Sprites/clothes.png"))
 	{
 		cout << "Clothes not found";
 	}
-	spriteClothes.setTexture(textureClothes);
+	texturesClothes.push_back(textureClothes);
 
-	sf::Sprite spriteStick;
+
 	sf::Texture textureStick;
 	textureStick.setSmooth(true);
 	if (!textureStick.loadFromFile("Sprites/stick.png"))
 	{
 		cout << "Stick not found";
 	}
-	spriteStick.setTexture(textureStick);
+	texturesStick.push_back(textureStick);
 
-	spriteStick.setColor(sf::Color::White);
-	sf::Sprite spriteclothes2(spriteClothes);
-	sf::Sprite spriteClothes3(spriteClothes);
-	sf::Sprite spriteBody2(spriteBody);
-	sf::Sprite spriteBody3(spriteBody);
-	spriteBody.setColor(RandomSkinColor());
-	spriteClothes.setColor(AttributeClothesColor(0, 1));
-	Member member1(dice(1000), dice(500), 0, "Mark", 0, 0, 0, 1, spriteHair, spriteBody, spriteStick, spriteClothes);
-	GM.AddMember(&member1);
-	spriteBody2.setColor(RandomSkinColor());
-	
-	spriteclothes2.setColor(AttributeClothesColor(1, 0));
-	Member member2(dice(1000), dice(500), 0, "Pawl", 0, 0, 1, 0, spriteHair, spriteBody2, spriteStick, spriteclothes2);
-	
-	GM.AddMember(&member2);
-
-	float redAffiliation = (float)rand() / RAND_MAX;
-	float blueAffiliation = (float)rand() / RAND_MAX;
-
-	spriteBody3.setColor(RandomSkinColor());
-	spriteClothes3.setColor(AttributeClothesColor(redAffiliation, blueAffiliation));
-	Member member3(dice(1000), dice(500), 0, "Seki", 0, 0, blueAffiliation, redAffiliation, spriteHair, spriteBody3, spriteStick, spriteClothes3);
-	GM.AddMember(&member3);
-
-
-
-	
 
 	sf::Sprite spriteInfrastructure;
 	sf::Texture textureInfrastructure;
@@ -120,9 +87,14 @@ int myMain()
 	Infrastructure house(50, 150, 0, "House", 0, 0, 5, spriteInfrastructure);
 	GM.AddInfrastructure(&house);
 
+
+	GM.GenerateMember(-1,-1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
 	bool flagMouseDown(false);
+	GM.UpdateAll();//
 	
-	GM.UpdateAll();
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -151,12 +123,13 @@ int myMain()
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
 		ImGui::SFML::Render(window);
-		std::vector<Member*> members(GM.GetMembers());
+
 		std::vector<Infrastructure*> infrastructures(GM.GetInfrastructures());
 		infrastructures[0]->Draw(window, infrastructures[0]->GetX(), infrastructures[0]->GetY(), false);
-		for (unsigned int i = 0; i < members.size(); i++)
+		
+		for (auto& mem : GM.members)
 		{
-			members[i]->Draw(window, members[i]->GetX(), members[i]->GetY());
+			mem.second.get()->Draw(window, mem.second.get()->GetX(), mem.second.get()->GetY(), false);
 		}
 		
 		//manager.UpdateAll();

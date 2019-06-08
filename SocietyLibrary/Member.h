@@ -30,6 +30,19 @@ enum RelationStatus
 	KILLERFRIEND,
 };
 
+const std::vector<std::string> RelationStatusStrings{ 
+	"PARENT",
+	"CHILD",
+	"SIBLING",
+	"FRIEND",
+	"BFF",
+	"ENEMY",
+	"KILLERSIBLING",
+	"KILLERPARENT",
+	"KILLERCHILD",
+	"KILLERFRIEND",
+};
+
 
 
 class Member : public GameObject
@@ -48,8 +61,10 @@ private:
 	float actionTimer;
 	float actionTime;
 	MemberState state;
-	Member* targetMember;
+	//Member* targetMember;
+	int targetMemberId;
 protected:
+	static int nbMember;
 	//speed at which the body disappears when dying
 	float disappearSpeed;
 	//name of the character
@@ -58,8 +73,8 @@ protected:
 	float aggressiveness;
 	// 0 - 1, inclination towards accepting others and avoiding conflict
 	float tolerance;
-	// 0 - 1, affiliation towards the green clan
-	float greenAffiliation;
+	// 0 - 1, affiliation towards the blue clan
+	float blueAffiliation;
 	//0 - 1, affiliation towards the red clan
 	float redAffiliation;
 	//can kill if attack > other's defense
@@ -75,15 +90,19 @@ protected:
 	//Sprite of clothes, with the "team" color
 	sf::Sprite clothes;
 	//Relationships with other members
-	std::map<Member*, Relationship> relationships;
+	std::map<int, Relationship> relationships;
+	//Unique id of the member
+	int id;
+	//Name tag that appears below the character
+	sf::Text nametag;
 public:
 
 	
-	Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float greenAffiliation, float redAffiliation,
+	Member(float x, float y, float z, std::string name, float aggressiveness, float tolerance, float blueAffiliation, float redAffiliation,
 		sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int attack=0, int defense=0);
 
 	//Dies and sends the message of their death to their loved ones
-	void Die(Member* killer=NULL);
+	void Die(int killerId=-1);
 
 	//Draws it on the window
 	virtual void Draw(sf::RenderWindow &window, float x, float y, bool selected = false) const;
@@ -99,22 +118,25 @@ public:
 	//Called every frame
 	virtual void Update();
 	//Tries to attack another member
-	bool Attack(Member* target);
+	bool Attack(int targetId);
 
 	//Add a status to the relation with target.
 	//if relative, their relation jauge is added relation
 	//else, it becomes relation
-	void AddRelationStatus(Member* target, RelationStatus status, float relation = 0.0f, bool relative = true);
+	void AddRelationStatus(int targetId, RelationStatus status, float relation = 0.0f, bool relative = true);
 
 	//if relative, their relation jauge is added relation
 	//else, it becomes relation
-	void AddRelation(Member* target, float relation, bool relative = true);
+	void AddRelation(int targetId, float relation, bool relative = true);
 	//Translates from (x,y)
 	virtual void Translate(float x, float y);
 	//Display the info window
 	virtual void Handle();
 	//checker si le personnage entre en territoire ennemi
-	
+
+	//Returns the id
+	int GetId();
+	sf::Text InitTag(std::string);
 }; 
 bool IsFamily(RelationStatus status);
 bool IsFriendly(RelationStatus status);
