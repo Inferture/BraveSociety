@@ -7,7 +7,6 @@
 using std::cout;
 GameManager::GameManager(): selectedMember(-1), selectedInfra(-1)
 {
-
 }
 
 
@@ -21,7 +20,10 @@ void GameManager::UpdateAll()
 	}
 	for (auto& mem: members)
 	{
-		mem.second->Update();
+		if (mem.second.get())
+		{
+			mem.second->Update();
+		}
 	}
 	for (auto& mem : members)
 	{
@@ -167,7 +169,7 @@ void GameManager::GenerateMember(int parent1, int parent2)
 
 	spriteClothes.setColor(AttributeClothesColor(blueAffiliation,redAffiliation));
 
-	Member member(dice(1000), dice(500), 0, RandomName(), aggressiveness, tolerance,blueAffiliation, redAffiliation, 
+	Member member(dice(WINDOW_WIDTH), dice(WINDOW_HEIGHT), 0, RandomName(), aggressiveness, tolerance,blueAffiliation, redAffiliation,
 		spriteHair, spriteBody, spriteStick, spriteClothes, hairstyle, bodystyle, clothesstyle, stickstyle);
 	
 	AddMember(member);

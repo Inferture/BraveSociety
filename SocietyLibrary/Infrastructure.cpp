@@ -30,6 +30,7 @@ Infrastructure::Infrastructure(Infrastructure & infra) :
 	maxCapacity(infra.maxCapacity), sprInfrastructure(infra.sprInfrastructure), id(infra.id),
 	timeInside(infra.timeInside), membersInside()
 {
+	++nbInfrastructures;
 	for (int i = 0; i < infra.membersInside.size(); i++)
 	{
 		membersInside.push_back(std::make_pair(std::move(infra.membersInside[i].first), infra.membersInside[i].second));
@@ -150,6 +151,8 @@ void Infrastructure::Update()
 		int idmem = v.first.get()->GetId();
 		if (v.second > timeInside)
 		{
+
+			
 			GM.members.insert({idmem, std::move(v.first)});
 
 			membersInside[i] = std::make_pair(std::move(membersInside[membersInside.size() - 1].first), membersInside[membersInside.size() - 1].second);
@@ -157,6 +160,9 @@ void Infrastructure::Update()
 			GM.members[idmem].get()->SetTargetInfra(-1);
 			GM.members[idmem].get()->SetState(IDLE);
 			GM.members[idmem].get()->SetTimer(5);
+			
+			GM.members[idmem].get()->AddAttack(bonusAttack);
+			GM.members[idmem].get()->AddDefense(bonusDefense);
 		}
 		else
 		{
@@ -176,7 +182,7 @@ void Infrastructure::Handle()
 		{
 			s += "+";
 		}
-		s += bonusDefense;
+		s += std::to_string(bonusDefense);
 		ImGui::Text(s.c_str());
 	}
 	if (bonusAttack != 0)
@@ -186,7 +192,7 @@ void Infrastructure::Handle()
 		{
 			s += "+";
 		}
-		s += bonusAttack;
+		s += std::to_string(bonusAttack);
 		ImGui::Text(s.c_str());
 	}
 	std::string sCap("Capacity:");

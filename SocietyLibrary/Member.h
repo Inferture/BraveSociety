@@ -179,6 +179,10 @@ public:
 	void SetTargetMember(int id);
 	//Gets the target member's id
 	int GetTargetMember();
+	//Adds to defense
+	void AddDefense(int d);
+	//Adds to attack
+	void AddAttack(int a);
 
 	//Gets the hair color
 	sf::Color GetHairColor();
@@ -187,6 +191,8 @@ public:
 	void SetTimer(float time);
 	//Sets the current state of the member
 	void SetState(MemberState state);
+	//Returns the state
+	MemberState GetState();
 }; 
 //Is a given relationstatus a family status ?
 bool IsFamily(RelationStatus status);

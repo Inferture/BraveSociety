@@ -2,8 +2,11 @@
 #include "../SocietyLibrary/myMain.h"
 #include "../SocietyLibrary/ColorManipulation.h"
 #include <SFML/Graphics.hpp>
+#include "../SocietyLibrary/Member.h"
+#include "../SocietyLibrary/GameObject.h"
+#include "../SocietyLibrary/Infrastructure.h"
 
-TEST(TestCaseName, TestName) {
+TEST(TestColorStrings, TestName) {
   EXPECT_EQ(1, 1);
   EXPECT_TRUE(true);
   EXPECT_EQ(myMain(), 5);
@@ -30,12 +33,20 @@ TEST(TestCaseName, TestName) {
 		  EXPECT_EQ(GetStringColor(GetColorString(color8)), color8);
 		  EXPECT_EQ(GetStringColor(GetColorString(color9)), color9);
 
-
-		  /*for (int b = 0; b < 256; b++)
-		  {
-			  
-		  }*/
 	  }
   }
 
 }
+
+/*
+TEST(TestMember, TestName) {
+	sf::Sprite sprite;
+	Member member(0, 0, 0, "victim", 0, 0, 0, 0, sprite, sprite, sprite, sprite, 0, 0, 0, 0, 0, 0);
+	Member member2(0, 0, 0, "brother", 0, 0, 0, 0, sprite, sprite, sprite, sprite, 0, 0, 0, 0, 1, 0);
+	Member member3(0, 0, 0, "killer", 0, 0, 0, 0, sprite, sprite, sprite, sprite, 0, 0, 0, 0, 1, 0);
+	member2.AddRelation(0, 0);
+	member2.AddRelationStatus(0, SIBLING);
+	member3.Attack(0);
+
+	//EXPECT_EQ(member.GetState(), DYING);
+}*/

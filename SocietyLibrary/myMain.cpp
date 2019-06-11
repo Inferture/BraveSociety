@@ -101,6 +101,14 @@ int myMain()
 	}
 	texturesHouse.push_back(textureHouse);
 
+	sf::Sprite spriteBackground;
+	sf::Texture textureBackground;
+	textureBackground.setSmooth(true);
+	if (!textureBackground.loadFromFile("Sprites/background.png"))
+	{
+		cout << "Background not found";
+	}
+	spriteBackground.setTexture(textureBackground);
 
 	sf::Sprite spriteInfrastructure;
 	sf::Texture textureInfrastructure;
@@ -112,18 +120,30 @@ int myMain()
 	spriteInfrastructure.setTexture(textureInfrastructure);
 
 	spriteInfrastructure.setColor(sf::Color::Red);
-	Infrastructure house(50, 150, 0, "House", 0,0,3, spriteInfrastructure,10);
+	Infrastructure house(50, 150, 0, "Sword shop", 0,1,3, spriteInfrastructure,10);
 	
 	sf::Sprite spriteInfrastructure2;
 	spriteInfrastructure2.setTexture(textureInfrastructure);
 
 	spriteInfrastructure2.setColor(sf::Color::Yellow);
-	Infrastructure house2(1600, 700, 0, "House", 0, 0, 3, spriteInfrastructure2, 10);
+	Infrastructure house2(1600, 700, 0, "Hospital" ,1, 0, 3, spriteInfrastructure2, 10);
 
 	GM.AddInfrastructure(house);
 	GM.AddInfrastructure(house2);
 
 	GM.GenerateMember(-1,-1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
+	GM.GenerateMember(-1, -1);
 	GM.GenerateMember(-1, -1);
 	GM.GenerateMember(-1, -1);
 	GM.GenerateMember(-1, -1);
@@ -170,7 +190,6 @@ int myMain()
 				{
 					infra.second.get()->GetId();
 				}
-				GM.Save();
 			}
 		}
 		
@@ -180,6 +199,7 @@ int myMain()
 		GM.UpdateAll();
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
+		window.draw(spriteBackground);
 		ImGui::SFML::Render(window);
 
 		std::vector<std::pair<float, int>> membersSort;

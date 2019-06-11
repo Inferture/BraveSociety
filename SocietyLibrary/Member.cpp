@@ -18,7 +18,7 @@ Member::Member(float x, float y, float z, std::string name, float aggressiveness
 	sf::Sprite hair, sf::Sprite body, sf::Sprite stick, sf::Sprite clothes, int hairstyle,
 	int bodystyle, int clothesstyle, int stickstyle, int attack, int defense) :
 	GameObject(x, y, z), name(name), aggressiveness(aggressiveness), tolerance(tolerance),
-	blueAffiliation(blueAffiliation), redAffiliation(redAffiliation), hair(hair), speed(150),
+	blueAffiliation(blueAffiliation), redAffiliation(redAffiliation), hair(hair), speed(400),
 	body(body), clothes(clothes), stick(stick), attack(attack), defense(defense), disappearSpeed(100),
 	id(nbMember), nametag(InitTag(name)), targetMemberId(-1), targetInfraId(-1), hairStyle(hairstyle),
 	bodyStyle(bodystyle), clothesStyle(clothesstyle), stickStyle(stickstyle)
@@ -687,6 +687,18 @@ void Member::SetTargetMember(int id)
 int Member::GetTargetMember()
 {
 	return targetMemberId;
+}
+MemberState Member::GetState()
+{
+	return state;
+}
+void Member::AddAttack(int a)
+{
+	attack+=a;
+}
+void Member::AddDefense(int d)
+{
+	defense+=d;
 }
 void Member::SetTargetInfra(int id)
 {

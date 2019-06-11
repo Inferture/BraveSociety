@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<Party deltaTime="0.00999999978" selectedMember="0" selectedInfra="-1">
+	<Member x="668.138" y="477.14389" z="0" id="3" name="Drybl" aggressiveness="0.816339612" tolerance="0.900173962" blueAffiliation="0.696768105" redAffiliation="0.335917234" attack="0" defense="0" hairColor="d5ed4d" bodyColor="fac47a" speed="400" actionTimer="0.290999979" actionTime="1.05786312" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="4" relation="0.300000012" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="7" relation="0.300000012" color="bbc508" name="Eum" />
+		<RelationShip id="8" relation="0.900000036" color="ef982f" name="Yipl" />
+		<RelationShip id="9" relation="0.900000036" color="1d91f3" name="Uchebryi" />
+		<RelationShip id="10" relation="0.300000012" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="12" relation="0.600000024" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.600000024" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="0.600000024" color="78ca64" name="Uzyisl" />
+	</Member>
+	<Member x="858.713684" y="482.201569" z="0" id="1" name="Shizruiv" aggressiveness="0.379375577" tolerance="0.0415967293" blueAffiliation="0.926084161" redAffiliation="0.186742753" attack="1" defense="1" hairColor="c19c14" bodyColor="f8c379" speed="400" actionTimer="4.59600115" actionTime="5.91583014" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="2" relation="1.79999995" color="3e7c80" name="Ibruuj">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="6" relation="0.600000024" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="7" relation="-0.300000012" color="bbc508" name="Eum" />
+		<RelationShip id="9" relation="0.300000012" color="1d91f3" name="Uchebryi" />
+		<RelationShip id="11" relation="-0.300000012" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="12" relation="0.600000024" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.900000036" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="0.600000024" color="78ca64" name="Uzyisl" />
+		<RelationShip id="15" relation="-0.300000012" color="22a3e5" name="Uetewy" />
+	</Member>
+	<Member x="841.068115" y="539.838623" z="0" id="9" name="Uchebryi" aggressiveness="0.262245566" tolerance="0.337321073" blueAffiliation="0.619129002" redAffiliation="0.806878865" attack="0" defense="1" hairColor="1d91f3" bodyColor="a17e4f" speed="400" actionTimer="1.33399975" actionTime="4.51008606" state="3" targetMember="6" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="1" relation="0.300000012" color="c19c14" name="Shizruiv" />
+		<RelationShip id="3" relation="0.900000036" color="d5ed4d" name="Drybl" />
+		<RelationShip id="5" relation="2.0999999" color="173110" name="Trypfi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="6" relation="1.20000005" color="40a599" name="Ujiuzriz">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="8" relation="0.300000012" color="ef982f" name="Yipl" />
+		<RelationShip id="11" relation="1.20000005" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="13" relation="0.600000024" color="2e6049" name="Nmyuw" />
+	</Member>
+	<Member x="673.902039" y="418.159393" z="0" id="10" name="Umuybuzr" aggressiveness="0.676564813" tolerance="0.87292093" blueAffiliation="0.552354515" redAffiliation="0.253852963" attack="0" defense="1" hairColor="3a67b6" bodyColor="cfa365" speed="400" actionTimer="0.350999981" actionTime="2.24112678" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="1.79999995" color="8cf398" name="Zribriglysl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="1" relation="-2.29999995" color="c19c14" name="Shizruiv">
+			<Status statusid="9" />
+		</RelationShip>
+		<RelationShip id="2" relation="0.600000024" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="3" relation="0.300000012" color="d5ed4d" name="Drybl" />
+		<RelationShip id="4" relation="0.600000024" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="5" relation="1.5" color="173110" name="Trypfi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="6" relation="0.600000024" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="8" relation="1.79999995" color="ef982f" name="Yipl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="11" relation="0.300000012" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="12" relation="0.900000036" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.900000036" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="0.300000012" color="78ca64" name="Uzyisl" />
+		<RelationShip id="15" relation="1.5" color="22a3e5" name="Uetewy">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="610.579041" y="430.379211" z="0" id="6" name="Ujiuzriz" aggressiveness="0.612628579" tolerance="0.845881522" blueAffiliation="0.822077096" redAffiliation="0.699240088" attack="1" defense="0" hairColor="40a599" bodyColor="967549" speed="400" actionTimer="1.33399975" actionTime="4.51008606" state="3" targetMember="9" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="1" relation="0.600000024" color="c19c14" name="Shizruiv" />
+		<RelationShip id="2" relation="0.600000024" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="5" relation="0.900000036" color="173110" name="Trypfi" />
+		<RelationShip id="9" relation="1.20000005" color="1d91f3" name="Uchebryi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="10" relation="0.600000024" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="11" relation="1.20000005" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="12" relation="0.900000036" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.300000012" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="0.300000012" color="78ca64" name="Uzyisl" />
+	</Member>
+	<Member x="916.599854" y="475.289246" z="0" id="14" name="Uzyisl" aggressiveness="0.648182631" tolerance="0.101962343" blueAffiliation="0.731162429" redAffiliation="0.184942171" attack="0" defense="1" hairColor="78ca64" bodyColor="eab772" speed="400" actionTimer="2.20600009" actionTime="7.51976061" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="1.5" color="8cf398" name="Zribriglysl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="1" relation="0.600000024" color="c19c14" name="Shizruiv" />
+		<RelationShip id="2" relation="0.600000024" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="3" relation="0.600000024" color="d5ed4d" name="Drybl" />
+		<RelationShip id="4" relation="1.79999995" color="0a5e24" name="Ipfueble">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="6" relation="0.300000012" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="7" relation="-0.300000012" color="bbc508" name="Eum" />
+		<RelationShip id="10" relation="0.300000012" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="12" relation="0.600000024" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.300000012" color="2e6049" name="Nmyuw" />
+	</Member>
+	<Member x="917.622375" y="488.5802" z="0" id="5" name="Trypfi" aggressiveness="0.148930326" tolerance="0.36149174" blueAffiliation="0.189153716" redAffiliation="0.566301465" attack="0" defense="2" hairColor="173110" bodyColor="c59a60" speed="400" actionTimer="0.350999981" actionTime="2.6767478" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="2" relation="0.300000012" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="6" relation="0.900000036" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="7" relation="0.900000036" color="bbc508" name="Eum" />
+		<RelationShip id="8" relation="0.300000012" color="ef982f" name="Yipl" />
+		<RelationShip id="9" relation="2.0999999" color="1d91f3" name="Uchebryi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="10" relation="1.5" color="3a67b6" name="Umuybuzr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="12" relation="0.300000012" color="4e7d7f" name="Tic" />
+		<RelationShip id="13" relation="0.900000036" color="2e6049" name="Nmyuw" />
+		<RelationShip id="15" relation="0.300000012" color="22a3e5" name="Uetewy" />
+	</Member>
+	<Member x="828.937378" y="448.110443" z="0" id="13" name="Nmyuw" aggressiveness="0.913571596" tolerance="0.300393701" blueAffiliation="0.806848347" redAffiliation="0.533280432" attack="1" defense="1" hairColor="2e6049" bodyColor="80643f" speed="400" actionTimer="4.93999815" actionTime="7.7509079" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="0.900000036" color="8cf398" name="Zribriglysl" />
+		<RelationShip id="1" relation="0.900000036" color="c19c14" name="Shizruiv" />
+		<RelationShip id="2" relation="0.600000024" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="3" relation="0.600000024" color="d5ed4d" name="Drybl" />
+		<RelationShip id="4" relation="0.900000036" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="5" relation="0.900000036" color="173110" name="Trypfi" />
+		<RelationShip id="6" relation="0.300000012" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="9" relation="0.600000024" color="1d91f3" name="Uchebryi" />
+		<RelationShip id="10" relation="0.900000036" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="14" relation="0.300000012" color="78ca64" name="Uzyisl" />
+	</Member>
+	<Member x="456.112732" y="339.19873" z="0" id="7" name="Eum" aggressiveness="0.758751154" tolerance="0.0715964213" blueAffiliation="0.770531356" redAffiliation="0.984954357" attack="1" defense="0" hairColor="bbc508" bodyColor="a68251" speed="400" actionTimer="0.305999964" actionTime="1.40330207" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="1" relation="-0.300000012" color="c19c14" name="Shizruiv" />
+		<RelationShip id="3" relation="0.300000012" color="d5ed4d" name="Drybl" />
+		<RelationShip id="4" relation="0.900000036" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="5" relation="0.900000036" color="173110" name="Trypfi" />
+		<RelationShip id="11" relation="0.600000024" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="14" relation="-0.300000012" color="78ca64" name="Uzyisl" />
+		<RelationShip id="15" relation="1.79999995" color="22a3e5" name="Uetewy">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="1019.88519" y="525.358459" z="0" id="2" name="Ibruuj" aggressiveness="0.0496230982" tolerance="0.714194179" blueAffiliation="0.178777426" redAffiliation="0.185003206" attack="0" defense="1" hairColor="3e7c80" bodyColor="daab6b" speed="400" actionTimer="0.910999358" actionTime="6.44883585" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="1.5" color="8cf398" name="Zribriglysl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="1" relation="1.79999995" color="c19c14" name="Shizruiv">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="4" relation="1.20000005" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="5" relation="0.300000012" color="173110" name="Trypfi" />
+		<RelationShip id="6" relation="0.600000024" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="10" relation="0.600000024" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="11" relation="0.300000012" color="ae93a8" name="Yiviyr" />
+		<RelationShip id="12" relation="1.79999995" color="4e7d7f" name="Tic">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="13" relation="0.600000024" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="0.600000024" color="78ca64" name="Uzyisl" />
+	</Member>
+	<Member x="679.054688" y="392.855774" z="0" id="0" name="Zribriglysl" aggressiveness="0.469618827" tolerance="0.803338706" blueAffiliation="0.901150525" redAffiliation="0.639637411" attack="2" defense="0" hairColor="8cf398" bodyColor="886b43" speed="400" actionTimer="1.18199956" actionTime="2.70497751" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="2" relation="1.5" color="3e7c80" name="Ibruuj">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="4" relation="0.600000024" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="8" relation="2.69999981" color="ef982f" name="Yipl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="10" relation="1.79999995" color="3a67b6" name="Umuybuzr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="13" relation="0.900000036" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="1.5" color="78ca64" name="Uzyisl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="15" relation="0.300000012" color="22a3e5" name="Uetewy" />
+	</Member>
+	<Member x="992.675903" y="496.76709" z="0" id="4" name="Ipfueble" aggressiveness="0.377117217" tolerance="0.754478574" blueAffiliation="0.555314779" redAffiliation="0.116245002" attack="0" defense="1" hairColor="0a5e24" bodyColor="af8955" speed="400" actionTimer="0.621999681" actionTime="2.00115967" state="3" targetMember="8" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="0.600000024" color="8cf398" name="Zribriglysl" />
+		<RelationShip id="2" relation="1.20000005" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="3" relation="0.300000012" color="d5ed4d" name="Drybl" />
+		<RelationShip id="7" relation="0.900000036" color="bbc508" name="Eum" />
+		<RelationShip id="8" relation="0.300000012" color="ef982f" name="Yipl" />
+		<RelationShip id="10" relation="0.600000024" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="13" relation="0.900000036" color="2e6049" name="Nmyuw" />
+		<RelationShip id="14" relation="1.79999995" color="78ca64" name="Uzyisl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="747.516113" y="432.705322" z="0" id="8" name="Yipl" aggressiveness="0.43916136" tolerance="0.86614579" blueAffiliation="0.908261359" redAffiliation="0.501602232" attack="1" defense="0" hairColor="ef982f" bodyColor="c99e63" speed="400" actionTimer="0.621999681" actionTime="2.00115967" state="3" targetMember="4" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="2.69999981" color="8cf398" name="Zribriglysl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="3" relation="0.900000036" color="d5ed4d" name="Drybl" />
+		<RelationShip id="4" relation="0.300000012" color="0a5e24" name="Ipfueble" />
+		<RelationShip id="5" relation="0.300000012" color="173110" name="Trypfi" />
+		<RelationShip id="9" relation="0.300000012" color="1d91f3" name="Uchebryi" />
+		<RelationShip id="10" relation="1.79999995" color="3a67b6" name="Umuybuzr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="11" relation="2.0999999" color="ae93a8" name="Yiviyr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="15" relation="0.300000012" color="22a3e5" name="Uetewy" />
+	</Member>
+	<Member x="274.409576" y="268.738129" z="0" id="11" name="Yiviyr" aggressiveness="0.923307002" tolerance="0.0786156803" blueAffiliation="0.710440397" redAffiliation="0.481002241" attack="1" defense="1" hairColor="ae93a8" bodyColor="927247" speed="400" actionTimer="1.09099936" actionTime="5" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="1" relation="-0.300000012" color="c19c14" name="Shizruiv" />
+		<RelationShip id="2" relation="0.300000012" color="3e7c80" name="Ibruuj" />
+		<RelationShip id="6" relation="1.20000005" color="40a599" name="Ujiuzriz" />
+		<RelationShip id="7" relation="0.600000024" color="bbc508" name="Eum" />
+		<RelationShip id="8" relation="2.0999999" color="ef982f" name="Yipl">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="9" relation="1.20000005" color="1d91f3" name="Uchebryi" />
+		<RelationShip id="10" relation="0.300000012" color="3a67b6" name="Umuybuzr" />
+		<RelationShip id="12" relation="1.20000005" color="4e7d7f" name="Tic" />
+	</Member>
+	<Infrastructure x="50" y="150" z="0" id="0" name="Sword shop" bonusAttack="1" bonusDefense="0" maxCapacity="3" timeInside="10" mainColor="Red" />
+	<Infrastructure x="1600" y="700" z="0" id="1" name="Hospital" bonusAttack="0" bonusDefense="1" maxCapacity="3" timeInside="10" mainColor="Yellow">
+		<Member x="1360.35559" y="624.100952" z="0" id="12" name="Tic" aggressiveness="0.797082424" tolerance="0.537278354" blueAffiliation="0.955992281" redAffiliation="0.476149797" attack="1" defense="1" hairColor="4e7d7f" bodyColor="dbac6b" speed="400" actionTimer="3.7340064" actionTime="1.80687881" state="1" targetMember="-1" targetInfra="1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" timeStayedInside="0.198000014">
+			<RelationShip id="1" relation="0.600000024" color="c19c14" name="Shizruiv" />
+			<RelationShip id="2" relation="1.79999995" color="3e7c80" name="Ibruuj">
+				<Status statusid="3" />
+				<Status statusid="4" />
+			</RelationShip>
+			<RelationShip id="3" relation="0.600000024" color="d5ed4d" name="Drybl" />
+			<RelationShip id="5" relation="0.300000012" color="173110" name="Trypfi" />
+			<RelationShip id="6" relation="0.900000036" color="40a599" name="Ujiuzriz" />
+			<RelationShip id="10" relation="0.900000036" color="3a67b6" name="Umuybuzr" />
+			<RelationShip id="11" relation="1.20000005" color="ae93a8" name="Yiviyr" />
+			<RelationShip id="14" relation="0.600000024" color="78ca64" name="Uzyisl" />
+		</Member>
+	</Infrastructure>
+</Party>

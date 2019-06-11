@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<Party deltaTime="0.0109999999" selectedMember="-1" selectedInfra="0">
+	<Member x="136.664291" y="215.475098" z="0" id="3" name="Etriub" aggressiveness="0.316629529" tolerance="0.60771507" blueAffiliation="0.635212243" redAffiliation="0.883846581" attack="0" defense="0" hairColor="e3cf55" bodyColor="efbb75" speed="150" actionTimer="1.59900057" actionTime="3.28369999" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="0.300000012" color="87b97f" name="Uebiz" />
+		<RelationShip id="1" relation="3.59999967" color="5973de" name="Chyblyenmi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="2" relation="3.59999967" color="4c7731" name="Iipr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="194.772247" y="165.675674" z="0" id="2" name="Iipr" aggressiveness="0.0473647267" tolerance="0.88348031" blueAffiliation="0.526688457" redAffiliation="0.854853988" attack="0" defense="0" hairColor="4c7731" bodyColor="8e6f45" speed="150" actionTimer="0.422000021" actionTime="2.28278446" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="2.99999976" color="87b97f" name="Uebiz">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="1" relation="4.19999981" color="5973de" name="Chyblyenmi">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="3" relation="3.59999967" color="e3cf55" name="Etriub">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="196.972321" y="161.576813" z="0" id="1" name="Chyblyenmi" aggressiveness="0.772698164" tolerance="0.271156967" blueAffiliation="0.580462039" redAffiliation="0.51533556" attack="0" defense="0" hairColor="5973de" bodyColor="be955d" speed="150" actionTimer="0.436000049" actionTime="3.74465156" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="3.89999962" color="87b97f" name="Uebiz">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="2" relation="4.19999981" color="4c7731" name="Iipr">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="3" relation="3.59999967" color="e3cf55" name="Etriub">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Infrastructure x="0" y="0" z="0" id="0" name="House" bonusAttack="0" BonusDefense="0" maxCapacity="5" timeInside="10" mainColor="Red">
+		<Member x="237.71315" y="93.740036" z="0" id="0" name="Uebiz" aggressiveness="0.16534929" tolerance="0.123722039" blueAffiliation="0.942289472" redAffiliation="0.354808182" attack="0" defense="0" hairColor="87b97f" bodyColor="c1985f" speed="150" actionTimer="1.29999983" actionTime="1.28528702" state="1" targetMember="-1" targetInfra="0" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" timeStayedInside="3.17500019">
+			<RelationShip id="1" relation="3.89999962" color="5973de" name="Chyblyenmi">
+				<Status statusid="3" />
+				<Status statusid="4" />
+			</RelationShip>
+			<RelationShip id="2" relation="2.99999976" color="4c7731" name="Iipr">
+				<Status statusid="3" />
+				<Status statusid="4" />
+			</RelationShip>
+			<RelationShip id="3" relation="0.300000012" color="e3cf55" name="Etriub" />
+		</Member>
+	</Infrastructure>
+</Party>
