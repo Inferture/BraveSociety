@@ -50,17 +50,6 @@ void GameObject::SetParent(GameObject* parent)
 {
 	this->parent = parent;
 }
-/*
-std::vector<unique_ptr<GameObject>>  GameObject::GetChildren()
-{
-	return children;
-}
-void GameObject::AddChild(unique_ptr<GameObject> &go)
-{
-	go->SetParent(this);
-	children.push_back(go);
-}*/
-
 bool operator<(const GameObject &go1, const GameObject& go2)
 {
 	return go1.GetZ() < go2.GetZ() || (go1.GetZ() == go2.GetZ() && go1.GetY() > go2.GetY());
@@ -78,28 +67,25 @@ void GameObject::Translate(float x, float y)
 {
 	this->x += x;
 	this->y -= y;
-	/*
-	for (auto &c : children)
-	{
-		c->Translate(x, y);
-	}*/
 }
 
 bool SortZ(GameObject* c1, GameObject *c2)
 {
 	return c1->GetZ() < c2->GetZ() || (c1->GetZ() == c2->GetZ() && c1->GetY() > c2->GetY());
 }
-
+bool SortZ(std::pair<int, unique_ptr<GameObject>> p1, std::pair<int, unique_ptr<GameObject>> p2)
+{
+	if (!p1.second.get() || !p2.second.get())
+	{
+		return false;
+	}
+	return p1.second.get()->GetZ() < p2.second.get()->GetZ() || 
+		(p1.second.get()->GetZ() == p2.second.get()->GetZ() && p1.second.get()->GetY() > p1.second.get()->GetY());
+}
 
 pugi::xml_document GameObject::SerializeRec() const
 {
 	pugi::xml_document doc = Serialize();
-	/*
-	for (auto &c : children)
-	{
-		pugi::xml_document child_doc = c->SerializeRec();
-		add_child(doc, child_doc);
-	}*/
 	return doc;
 }
 

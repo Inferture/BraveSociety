@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <imgui.h>
+
 /*
 Takes a string of either a base sf Color (ex:"Red")
 or the hexCode of the color (ex:ff0000) and returns
@@ -29,5 +31,10 @@ std::string stringHex(int a);
 //A random skin color
 sf::Color RandomSkinColor();
 
+//A random color
+sf::Color RandomColor();
 //Attribute the right color according to the team affiliation
 sf::Color AttributeClothesColor(float blueAffiliation, float RedAffiliation);
+
+//Convers an SFML color to an ImColor
+ImColor SfToImColor(sf::Color color);

@@ -13,9 +13,12 @@
 #include "GameManager.h"
 #include "ColorManipulation.h"
 #include "SFML/Graphics.hpp"
+#include <set>
 using std::string;
 using std::cout;
 using std::unique_ptr;
+
+
 
 GameManager GM;
 sf::Font tagfont;
@@ -24,8 +27,8 @@ std::vector<sf::Texture> texturesHair;
 std::vector<sf::Texture> texturesBody;
 std::vector<sf::Texture> texturesClothes;
 std::vector<sf::Texture> texturesStick;
-
-
+std::vector<sf::Texture> texturesBubble;
+std::vector<sf::Texture> texturesHouse;
 int myMain()
 {
 	srand(time(NULL));
@@ -45,7 +48,16 @@ int myMain()
 		cout << "Hair not found";
 	}
 	texturesHair.push_back(textureHair);
-
+	if (!textureHair.loadFromFile("Sprites/hair2.png"))
+	{
+		cout << "Hair not found";
+	}
+	texturesHair.push_back(textureHair);
+	if (!textureHair.loadFromFile("Sprites/hair3.png"))
+	{
+		cout << "Hair not found";
+	}
+	texturesHair.push_back(textureHair);
 
 	sf::Texture textureBody;
 	textureBody.setSmooth(true);
@@ -73,6 +85,22 @@ int myMain()
 	}
 	texturesStick.push_back(textureStick);
 
+	sf::Texture textureBubble;
+	textureBubble.setSmooth(true);
+	if (!textureBubble.loadFromFile("Sprites/bubble.png"))
+	{
+		cout << "Bubble not found";
+	}
+	texturesBubble.push_back(textureBubble);
+
+	sf::Texture textureHouse;
+	textureHouse.setSmooth(true);
+	if (!textureHouse.loadFromFile("Sprites/house.png"))
+	{
+		cout << "House not found";
+	}
+	texturesHouse.push_back(textureHouse);
+
 
 	sf::Sprite spriteInfrastructure;
 	sf::Texture textureInfrastructure;
@@ -84,9 +112,16 @@ int myMain()
 	spriteInfrastructure.setTexture(textureInfrastructure);
 
 	spriteInfrastructure.setColor(sf::Color::Red);
-	Infrastructure house(50, 150, 0, "House", 0, 0, 5, spriteInfrastructure);
-	GM.AddInfrastructure(&house);
+	Infrastructure house(50, 150, 0, "House", 0,0,3, spriteInfrastructure,10);
+	
+	sf::Sprite spriteInfrastructure2;
+	spriteInfrastructure2.setTexture(textureInfrastructure);
 
+	spriteInfrastructure2.setColor(sf::Color::Yellow);
+	Infrastructure house2(1600, 700, 0, "House", 0, 0, 3, spriteInfrastructure2, 10);
+
+	GM.AddInfrastructure(house);
+	GM.AddInfrastructure(house2);
 
 	GM.GenerateMember(-1,-1);
 	GM.GenerateMember(-1, -1);
@@ -95,11 +130,15 @@ int myMain()
 	bool flagMouseDown(false);
 	GM.UpdateAll();//
 	
+
+	//Loop
 	while (window.isOpen())
 	{
 		sf::Event event;
 
 		ImGui::SFML::Update(window, deltaClock.restart());
+
+		//Events
 		while (window.pollEvent(event))
 		{
 
@@ -110,9 +149,28 @@ int myMain()
 			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			{
-				float mouse_x = sf::Mouse::getPosition().x;
-				float mouse_y = sf::Mouse::getPosition().y;
+				float mouse_x = (float)sf::Mouse::getPosition().x;
+				float mouse_y = (float)sf::Mouse::getPosition().y;
 				GM.HandleObjectAt(mouse_x, mouse_y);
+			}
+			if (sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
+			{
+				GM.Save();
+			}
+			if (sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::F7))
+			{
+				pugi::xml_document doc;
+				pugi::xml_parse_result result = doc.load_file("./Saves/save.xml");
+				GM = GameManager(doc.first_child());
+				for (auto& mem : GM.members)
+				{
+					mem.second.get()->GetId();
+				}
+				for (auto& infra : GM.infrastructures)
+				{
+					infra.second.get()->GetId();
+				}
+				GM.Save();
 			}
 		}
 		
@@ -124,18 +182,51 @@ int myMain()
 		window.clear(sf::Color(125, 125, 125, 255));
 		ImGui::SFML::Render(window);
 
-		std::vector<Infrastructure*> infrastructures(GM.GetInfrastructures());
-		infrastructures[0]->Draw(window, infrastructures[0]->GetX(), infrastructures[0]->GetY(), false);
-		
+		std::vector<std::pair<float, int>> membersSort;
+		std::vector<std::pair<float, int>> infrastructuresSort;
 		for (auto& mem : GM.members)
 		{
-			mem.second.get()->Draw(window, mem.second.get()->GetX(), mem.second.get()->GetY(), false);
+			membersSort.push_back(std::make_pair( mem.second.get()->GetY(), mem.second.get()->GetId() ));
 		}
-		
-		//manager.UpdateAll();
+		for (auto& infra : GM.infrastructures)
+		{
+			infrastructuresSort.push_back({ infra.second.get()->GetY(), infra.second.get()->GetId() });
+		}
 
-		//window.draw(sprite);
-		//member.Draw(window, member.GetX(), member.GetY());
+		std::sort(membersSort.begin(), membersSort.end(),Sort);
+		std::sort(infrastructuresSort.begin(), infrastructuresSort.end(), Sort);
+
+
+		int m(0);
+		int i(0);
+		while (m < membersSort.size() || i < infrastructuresSort.size())
+		{
+			if (m < membersSort.size() && i < infrastructuresSort.size())
+			{
+				if (GM.infrastructures[infrastructuresSort[i].second].get()->GetY() < GM.members[membersSort[m].second].get()->GetY())
+				{
+					GM.infrastructures[infrastructuresSort[i].second].get()->Draw(window, GM.infrastructures[infrastructuresSort[i].second].get()->GetX(), GM.infrastructures[infrastructuresSort[i].second].get()->GetY(), false);
+					i++;
+				}
+				else
+				{
+					GM.members[membersSort[m].second].get()->Draw(window, GM.members[membersSort[m].second].get()->GetX(), GM.members[membersSort[m].second].get()->GetY(), false);
+					m++;
+				}
+			}
+			else if (m < membersSort.size())
+			{
+				GM.members[membersSort[m].second].get()->Draw(window, GM.members[membersSort[m].second].get()->GetX(), GM.members[membersSort[m].second].get()->GetY(), false);
+				m++;
+			}
+			else
+			{
+				GM.infrastructures[infrastructuresSort[i].second].get()->Draw(window, GM.infrastructures[infrastructuresSort[i].second].get()->GetX(), GM.infrastructures[infrastructuresSort[i].second].get()->GetY(), false);
+				i++;
+			}
+		}
+
+
 		window.display();
 	}
 
@@ -166,3 +257,8 @@ int dice(int n)
 	return distribution(engine);
 }
 
+//Sorts pairs with the first value
+bool Sort(std::pair<float, int>a, std::pair<float, int>b)
+{
+	return a.first < b.first;
+}

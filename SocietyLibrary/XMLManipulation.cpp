@@ -73,7 +73,7 @@ void print_doc(const pugi::xml_document &node)
 
 	}
 	for (auto &c : node.children())
-	{
+	{ 
 		cout << "**DocChildren:\n";
 		print_node(c);
 	}
