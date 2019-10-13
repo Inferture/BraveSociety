@@ -40,7 +40,8 @@ void add_node(pugi::xml_node &parent, pugi::xml_node &child)
 			att.set_value(a.value());
 		}
 	}
-	print_node(childCopy);
+	//print_node(childCopy);
+	
 }
 
 void add_child(pugi::xml_document &parent, pugi::xml_node &child)
@@ -57,7 +58,7 @@ void add_child(pugi::xml_document &parent, pugi::xml_node &child)
 		pugi::xml_attribute att = childCopy.append_attribute(a.name());
 		att.set_value(a.value());
 	}
-	print_node(childCopy);
+	//print_node(childCopy);
 }
 
 
