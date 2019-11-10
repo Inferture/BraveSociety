@@ -1,1 +1,3 @@
 # BraveSociety
+
+C++ school project.
