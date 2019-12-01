@@ -1,3 +1,16 @@
-﻿  Member.cpp
-E:\Documents\C++\BraveSociety\SocietyLibrary\Member.cpp(617): warning C4018: '<' : incompatibilité signed/unsigned
+﻿  myMain.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(36): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(194): warning C4244: 'initialisation' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(195): warning C4244: 'initialisation' : conversion de 'T' en 'float', perte possible de données
+          with
+          [
+              T=unsigned int
+          ]
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(271): warning C4018: '<' : incompatibilité signed/unsigned
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(273): warning C4018: '<' : incompatibilité signed/unsigned
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(286): warning C4018: '<' : incompatibilité signed/unsigned
   SocietyLibrary.vcxproj -> E:\Documents\C++\BraveSociety\Debug\SocietyLibrary.lib

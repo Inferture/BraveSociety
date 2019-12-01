@@ -186,7 +186,7 @@ int myMain()
 			{
 				currentInfrastructure = 3;
 			}
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !flagMouseDown)
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !flagMouseDown&& !ImGui::IsMouseHoveringAnyWindow())
 			{
 				float mouse_x = (float)sf::Mouse::getPosition().x;
 				float mouse_y = (float)sf::Mouse::getPosition().y;
@@ -249,7 +249,7 @@ int myMain()
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
 		window.draw(spriteBackground);
-		//ImGui::SFML::Render(window);
+		ImGui::SFML::Render(window);
 
 		std::vector<std::pair<float, int>> membersSort;
 		std::vector<std::pair<float, int>> infrastructuresSort;
