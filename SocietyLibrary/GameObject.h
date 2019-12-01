@@ -79,23 +79,27 @@ bool SortZ(std::pair<int, unique_ptr<GameObject>> p1, std::pair<int, unique_ptr<
 /*
 todo
 
+<ok>
 -Membre qui s'affiche
 --Sprite hair & body
 --Choix aléatoire						
 --Nom en dessous du personnage		
 
+<ok>
 -Membre qui se déplace
 
-
+<ok>
 -Membre qui peut être sélectionné
 
+<ok>
 -Affichage des infos sur le membre
 
+<ok>
 -Possibilité de tuer le membre
 
+<ok>
 -Membre qui interragit avec les autres
 
-//roughly okay above
 
 -Sauvegarde
 --Demander nom sauvegarde

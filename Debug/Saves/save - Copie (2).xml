@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Party deltaTime="0" selectedMember="3" selectedInfra="-1">
+	<Member x="392.429016" y="268.680237" z="0" id="3" name="Pfyu" aggressiveness="0.861201823" tolerance="0.130253002" blueAffiliation="0.776696086" redAffiliation="0.955442965" attack="0" defense="0" hairColor="0f7722" bodyColor="8a6c43" speed="150" actionTimer="0.368999958" actionTime="2.42515326" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="1.79999995" color="ab5ae1" name="Lei">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+		<RelationShip id="1" relation="0.900000036" color="718a9d" name="Yiqu" />
+	</Member>
+	<Member x="292.732758" y="69.3331451" z="0" id="0" name="Lei" aggressiveness="0.946287394" tolerance="0.123722039" blueAffiliation="0.676686883" redAffiliation="0.776665568" attack="0" defense="0" hairColor="ab5ae1" bodyColor="9a794b" speed="150" actionTimer="0.368999958" actionTime="1.8395642" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="3" relation="1.79999995" color="0f7722" name="Pfyu">
+			<Status statusid="3" />
+			<Status statusid="4" />
+		</RelationShip>
+	</Member>
+	<Member x="206.182541" y="351.367462" z="0" id="2" name="Ihycuiv" aggressiveness="0.772331893" tolerance="0.638325155" blueAffiliation="0.889095724" redAffiliation="0.176946312" attack="0" defense="0" hairColor="9bb9f0" bodyColor="a78352" speed="150" actionTimer="0.985000312" actionTime="4.25550079" state="0" targetMember="3" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" />
+	<Infrastructure x="50" y="150" z="0" id="0" name="House" bonusAttack="0" bonusDefense="0" maxCapacity="5" timeInside="10" mainColor="Red">
+		<Member x="305.334747" y="161.32579" z="0" id="1" name="Yiqu" aggressiveness="0.0281685852" tolerance="0.425519586" blueAffiliation="0.596758962" redAffiliation="0.252937406" attack="0" defense="0" hairColor="718a9d" bodyColor="b18a56" speed="150" actionTimer="4.01599979" actionTime="1.73683882" state="1" targetMember="-1" targetInfra="0" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" timeStayedInside="4.66900158">
+			<RelationShip id="3" relation="0.900000036" color="0f7722" name="Pfyu" />
+		</Member>
+	</Infrastructure>
+</Party>

@@ -1,16 +1,3 @@
-﻿  myMain.cpp
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(141): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-c:\users\la ludotheque\source\repos\bravesociety\societylibrary\mymain.cpp(142): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-  SocietyLibrary.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyLibrary.lib
+﻿  Member.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\Member.cpp(617): warning C4018: '<' : incompatibilité signed/unsigned
+  SocietyLibrary.vcxproj -> E:\Documents\C++\BraveSociety\Debug\SocietyLibrary.lib

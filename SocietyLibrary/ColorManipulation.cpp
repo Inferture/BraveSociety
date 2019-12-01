@@ -3,6 +3,13 @@
 #include <imgui.h>
 using std::string;
 
+///All the functions to manipulate color
+
+
+///<summary>
+///Generate a string from a color for serialization
+///</summary>
+///<param name="color">color to convert to string</param>
 std::string GetColorString(sf::Color color)
 {
 	if (color == sf::Color::Blue)
@@ -41,7 +48,7 @@ std::string GetColorString(sf::Color color)
 	{
 		return "Black";
 	}
-
+	
 	string s;
 	s.append(stringHex(color.r));
 	s.append(stringHex(color.g));
@@ -50,6 +57,13 @@ std::string GetColorString(sf::Color color)
 
 }
 
+///<summary>
+///Finds the color corresponding to a given string
+///Either a string corresponding to a preset Color ("Blue")
+///or a hex string representing an rgb code (ff0000 for red)
+///for example
+///</summary>
+///<param name="color">string to convert to color</param>
 sf::Color GetStringColor(std::string color)
 {
 	if (color._Equal("Blue"))
@@ -96,6 +110,13 @@ sf::Color GetStringColor(std::string color)
 	return sf::Color::Black;
 }
 
+
+///<summary>
+///A small variation from a color to indicate it
+///has been selected. For example, for making an
+///outline of the object of said color
+///</summary>
+///<param name="color">base color</param>
 sf::Color GetColorSelected(sf::Color color)
 {
 	if (color.r + color.g + color.b <= 255 * 3 / 2)
@@ -115,12 +136,17 @@ sf::Color GetColorSelected(sf::Color color)
 	}
 }
 
+///<summary>
+///Converts an int between 0 and 255 to a string
+///representing its value in base 16
+///</summary>
+///<param name="a">int to convert (should be between 0 and 255)</param>
 std::string stringHex(int a)
 {
 	string s("");
 	int d = (a / 16) % 16;
 	int b = a % 16;
-
+	
 	string values[]{ "0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f" };
 	s.append(values[d]);
 	s.append(values[b]);
@@ -128,7 +154,11 @@ std::string stringHex(int a)
 	return s;
 }
 
-
+///<summary>
+///Gets the value of a string representing an hexadecimal number
+///Example: fe for 254
+///</summary>
+///<param name="a">string representing an hexadecimal number</param>
 int hexString(std::string a)
 {
 	unsigned int i(0);
@@ -194,6 +224,9 @@ int hexString(std::string a)
 	return n;
 }
 
+///<summary>
+///Generates a random skin color
+///</summary>
 sf::Color RandomSkinColor()
 {
 	//255,200,125
@@ -202,6 +235,9 @@ sf::Color RandomSkinColor()
 	float b = r * 125.0f / 255.0f;
 	return sf::Color((int)r, (int)g, (int)b);
 }
+///<summary>
+///Generates a random color
+///</summary>
 sf::Color RandomColor()
 {
 	float r = ((float)rand() / (RAND_MAX)) * 255;
@@ -210,13 +246,22 @@ sf::Color RandomColor()
 	return sf::Color((int)r, (int)g, (int)b);
 }
 
-sf::Color AttributeClothesColor(float BlueAffiliation, float RedAffiliation) {
-	float r = 255 * RedAffiliation;
-	float b = 255 * BlueAffiliation;
+///<summary>
+///Generates a color from the blue affiliation and the
+///red affiliation of a member to put on their clothes
+///</summary>
+///<param name="blueAffiliation">blue affiliation of the member</param>
+///<param name="redAffiliation">red affiliation of the member</param>
+sf::Color AttributeClothesColor(float blueAffiliation, float redAffiliation) {
+	float r = 255 * redAffiliation;
+	float b = 255 * blueAffiliation;
 	return sf::Color((int)r, 0, (int)b);
 }
 
-
+///<summary>
+///Converts an sf::Color to an ImColor
+///</summary>
+///<param name="color">sf::Color to convert</param>
 ImColor SfToImColor(sf::Color color)
 {
 	return ImColor(color.r, color.g, color.b, color.a);

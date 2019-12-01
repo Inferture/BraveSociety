@@ -316,7 +316,7 @@ void Member::Handle()
 	ImGui::TextColored(ImColor(255, 0, 0, 255), reda.c_str());
 	std::string bluea("Blue affiliation:");
 	bluea += to_string((int)std::ceil(blueAffiliation * 100)) + "/100";
-	ImGui::TextColored(ImColor(0, 255, 0, 255), bluea.c_str());
+	ImGui::TextColored(ImColor(0, 125, 255, 255), bluea.c_str());
 	std::string tol("Tolerance:");
 	tol += to_string((int)std::ceil(tolerance * 100)) + "/100";
 	ImGui::Text(tol.c_str());

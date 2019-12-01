@@ -1,0 +1,16 @@
+﻿  stdafx.cpp
+  ColorManipulation.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\ColorManipulation.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  GameManager.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\GameManager.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  GameObject.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.h(4): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Infrastructure.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\infrastructure.h(5): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Member.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\Member.h(5): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  myMain.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\myMain.cpp(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'pugixml.hpp' : No such file or directory
+  XMLManipulation.cpp
+E:\Documents\C++\BraveSociety\SocietyLibrary\XMLManipulation.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'pugixml.hpp' : No such file or directory
+  Génération de code en cours...

@@ -29,11 +29,14 @@ std::vector<sf::Texture> texturesClothes;
 std::vector<sf::Texture> texturesStick;
 std::vector<sf::Texture> texturesBubble;
 std::vector<sf::Texture> texturesHouse;
+
+int currentInfrastructure=1;
 int myMain()
 {
 	srand(time(NULL));
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Brave Society");
 
+	
 	tagfont.loadFromFile("Fonts/Augusta.ttf");
 
 	sf::Clock deltaClock;
@@ -125,8 +128,13 @@ int myMain()
 	sf::Sprite spriteInfrastructure2;
 	spriteInfrastructure2.setTexture(textureInfrastructure);
 
-	spriteInfrastructure2.setColor(sf::Color::Yellow);
+	spriteInfrastructure2.setColor(sf::Color::Blue);
 	Infrastructure house2(1600, 700, 0, "Hospital" ,1, 0, 3, spriteInfrastructure2, 10);
+
+	sf::Sprite spriteInfrastructure3;
+	spriteInfrastructure3.setTexture(textureInfrastructure);
+	spriteInfrastructure3.setColor(sf::Color::Yellow);
+
 
 	GM.AddInfrastructure(house);
 	GM.AddInfrastructure(house2);
@@ -150,7 +158,6 @@ int myMain()
 	bool flagMouseDown(false);
 	GM.UpdateAll();//
 	
-
 	//Loop
 	while (window.isOpen())
 	{
@@ -166,6 +173,47 @@ int myMain()
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
+			}
+			if (sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			{
+				currentInfrastructure = 1;
+			}
+			if (sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+			{
+				currentInfrastructure = 2;
+			}
+			if (sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+			{
+				currentInfrastructure = 3;
+			}
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !flagMouseDown)
+			{
+				float mouse_x = (float)sf::Mouse::getPosition().x;
+				float mouse_y = (float)sf::Mouse::getPosition().y;
+
+				float tx = textureInfrastructure.getSize().x;
+				float ty = textureInfrastructure.getSize().y;
+
+				if (currentInfrastructure == 1)
+				{
+					Infrastructure swordShop(mouse_x-tx/2, mouse_y-ty/2, 0, "Sword shop", 0, 1, 3, spriteInfrastructure, 10);
+					GM.AddInfrastructure(swordShop);
+				}
+				if (currentInfrastructure == 2)
+				{
+					Infrastructure hospital(mouse_x - tx / 2, mouse_y - ty / 2, 0, "Hospital", 1, 0, 3, spriteInfrastructure2, 10);
+					GM.AddInfrastructure(hospital);
+				}
+				if (currentInfrastructure == 3)
+				{
+					Infrastructure tavern(mouse_x - tx / 2, mouse_y - ty / 2,0, "Tavern", 0, 0, 3, spriteInfrastructure3, 20);
+					GM.AddInfrastructure(tavern);
+				}
+				flagMouseDown = true;
+			}
+			if (!sf::Mouse::isButtonPressed(sf::Mouse::Right) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				flagMouseDown = false;
 			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			{
@@ -201,7 +249,7 @@ int myMain()
 		//Render
 		window.clear(sf::Color(125, 125, 125, 255));
 		window.draw(spriteBackground);
-		ImGui::SFML::Render(window);
+		//ImGui::SFML::Render(window);
 
 		std::vector<std::pair<float, int>> membersSort;
 		std::vector<std::pair<float, int>> infrastructuresSort;
@@ -247,7 +295,7 @@ int myMain()
 			}
 		}
 
-
+		ImGui::SFML::Render(window);
 		window.display();
 	}
 

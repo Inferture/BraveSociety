@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Party deltaTime="0.00899999961" selectedMember="3" selectedInfra="-1" />
+<Member x="759" y="145" z="0" id="0" name="Wykyigli" aggressiveness="0.614947975" tolerance="0.862178385" blueAffiliation="0.977996171" redAffiliation="0.222968236" attack="0" defense="0" hairColor="142fd4" bodyColor="eebb74" speed="150" actionTimer="1.0200001" actionTime="2.03793454" state="3" targetMember="1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" id="1" relation="0.300000012" color="4b72d9" name="Euchyshig" />
+<RelationShip />
+<Member x="842" y="378" z="0" id="1" name="Euchyshig" aggressiveness="0.921018124" tolerance="0.492812902" blueAffiliation="0.552140892" redAffiliation="0.742088079" attack="0" defense="0" hairColor="4b72d9" bodyColor="c99d62" speed="150" actionTimer="1.02900016" actionTime="2.03793454" state="3" targetMember="0" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0" id="0" relation="0.300000012" color="142fd4" name="Wykyigli" />
+<RelationShip />
+<Member x="322" y="426" z="0" id="2" name="Cufi" aggressiveness="0.00827051606" tolerance="0.985259533" blueAffiliation="0.723868549" redAffiliation="0.940031111" attack="0" defense="0" hairColor="14419a" bodyColor="e4b370" speed="150" actionTimer="1" actionTime="5.63118362" state="3" targetMember="3" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0" id="3" relation="0.300000012" color="7f59ed" name="Kileepl" />
+<RelationShip />
+<Member x="442" y="418" z="0" id="3" name="Kileepl" aggressiveness="0.154210031" tolerance="0.565660596" blueAffiliation="0.171758175" redAffiliation="0.682119191" attack="0" defense="0" hairColor="7f59ed" bodyColor="ab8654" speed="150" actionTimer="1.0200001" actionTime="5.63118362" state="3" targetMember="2" targetInfra="-1" disappearSpeed="100" hairstyle="1" bodystyle="0" stickstyle="0" clothesstyle="0" id="2" relation="0.300000012" color="14419a" name="Cufi" />
+<RelationShip />
+<Infrastructure x="0" y="0" z="0" id="0" name="House" bonusAttack="0" BonusDefense="0" maxCapacity="5" timeInside="10" mainColor="Red" />

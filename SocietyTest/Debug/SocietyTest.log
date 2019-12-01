@@ -1,1 +1,3 @@
-﻿  SocietyTest.vcxproj -> C:\Users\La Ludotheque\source\repos\BraveSociety\Debug\SocietyTest.exe
+﻿cl : Ligne de commande warning D9035: l'option 'Gm' est déconseillée et sera supprimée dans une version ultérieure
+  pch.cpp
+E:\Documents\C++\BraveSociety\SocietyTest\pch.h(8): fatal error C1083: Impossible d'ouvrir le fichier include : 'gtest/gtest.h' : No such file or directory

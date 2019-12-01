@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Party deltaTime="0.00300000003" selectedMember="-1" selectedInfra="-1">
+	<Member x="735.54541" y="29.5954094" z="0" id="0" name="Trie" aggressiveness="0.814447463" tolerance="0.188238174" blueAffiliation="0.544206083" redAffiliation="0.355479598" attack="0" defense="0" hairColor="31fa3c" bodyColor="8e6f45" speed="150" actionTimer="0.0270000007" actionTime="4.37031174" state="3" targetMember="1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="1" relation="0.300000012" color="97baba" name="Zzidriy" />
+	</Member>
+	<Member x="703.437744" y="283.537811" z="0" id="1" name="Zzidriy" aggressiveness="0.722006917" tolerance="0.768272936" blueAffiliation="0.258003473" redAffiliation="0.581377625" attack="0" defense="0" hairColor="97baba" bodyColor="bc935c" speed="150" actionTimer="0.0270000007" actionTime="4.37031174" state="3" targetMember="0" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0">
+		<RelationShip id="0" relation="0.300000012" color="31fa3c" name="Trie" />
+	</Member>
+	<Member x="765" y="179" z="0" id="2" name="Nyidriyb" aggressiveness="0.824762702" tolerance="0.902493358" blueAffiliation="0.12082278" redAffiliation="0.836695433" attack="0" defense="0" hairColor="3fedef" bodyColor="d0a366" speed="150" actionTimer="0.053999994" actionTime="1.05362105" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="2" bodystyle="0" stickstyle="0" clothesstyle="0" />
+	<Member x="967" y="479" z="0" id="3" name="Ydrieny" aggressiveness="0.887112021" tolerance="0.142155215" blueAffiliation="0.748771608" redAffiliation="0.478408158" attack="0" defense="0" hairColor="c2a85c" bodyColor="846740" speed="150" actionTimer="0.053999994" actionTime="2.60115361" state="0" targetMember="-1" targetInfra="-1" disappearSpeed="100" hairstyle="0" bodystyle="0" stickstyle="0" clothesstyle="0" />
+	<Infrastructure x="0" y="0" z="0" id="0" name="House" bonusAttack="0" bonusDefense="0" maxCapacity="5" timeInside="10" mainColor="Red" />
+</Party>
