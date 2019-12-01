@@ -1,6 +1,6 @@
 # BraveSociety
 
-C++ school project.
+C++ school project. [(Releases)](https://github.com/Inferture/BraveSociety/releases)
 
 
 ## Current state:
