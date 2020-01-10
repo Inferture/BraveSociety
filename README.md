@@ -2,7 +2,7 @@
 
 C++ school project. [(Releases)](https://github.com/Inferture/BraveSociety/releases)
 
-
+![](./Demo/BraveSociety.gif)
 ## Current state:
 
 ###   Rules:
